@@ -26,7 +26,7 @@ public class MyCustomView extends View {
 
     private int roundWidth = 50;
 
-    private String text;
+    private String text = "test";
     public MyCustomView(ThemedReactContext reactContext, PipelineDraweeControllerBuilder pipelineDraweeControllerBuilder, Object o, Context context) {
         super(context);
     }
