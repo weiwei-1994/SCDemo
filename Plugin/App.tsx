@@ -18,10 +18,10 @@ import NativeView from './Component/NativeView'
 
 const App = () => {
 
-  const callAndroidMoudle = () => {
+  const callAndroidMoudle = (message:string) => {
     if (Platform.OS == 'android') {
       const androidNativeMoudle = NativeModules.ToastExample;
-      androidNativeMoudle.show('调用安卓原生模块', 1);
+      androidNativeMoudle.show(message, 1);
     }
   }
 
@@ -29,10 +29,11 @@ const App = () => {
     <View style={styles.contanin}>
       <Button
         title='调用安卓原生模块'
-        onPress={callAndroidMoudle} />
+        onPress={() => callAndroidMoudle('调用安卓原生模块')} />
       <NativeView
         style= {styles.nativeView}
         titleText='哈哈哈'
+        onChangeMessage={() => callAndroidMoudle('点击原生组件回调')}
       />
     </View>
   );
