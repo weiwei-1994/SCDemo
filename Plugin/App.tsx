@@ -19,7 +19,7 @@ const App = () => {
 
   const callAndroidMoudle = () => {
     const androidNativeMoudle = NativeModules.ToastExample;
-    androidNativeMoudle.show('调用安卓原生模块',10);
+    androidNativeMoudle.show('调用安卓原生模块',0);
   }
 
   return (
