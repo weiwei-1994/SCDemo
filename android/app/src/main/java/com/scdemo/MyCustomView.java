@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.View.OnClickListener;
 
 import androidx.annotation.Nullable;
 
@@ -96,6 +97,17 @@ public class MyCustomView extends View {
         }
     }
 
+
+    @Override
+    public void setOnClickListener(@Nullable OnClickListener l) {
+        //super.setOnClickListener(l);
+        new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                onReceiveNativeEvent();
+            }
+        };
+    }
 
     public void onReceiveNativeEvent() {
         WritableMap event = Arguments.createMap();
