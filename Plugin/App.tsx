@@ -11,12 +11,22 @@ import {
   StyleSheet,
   Text,
   View,
+  Button,
+  NativeModules
 } from 'react-native';
 
 const App = () => {
+
+  const callAndroidMoudle = () => {
+    const androidNativeMoudle = NativeModules.ToastExample;
+    androidNativeMoudle.show('调用安卓原生模块',10);
+  }
+
   return (
    <View style={styles.contanin}>
-     <Text>欢迎</Text>
+     <Button 
+      title='调用安卓原生模块'
+      onPress={callAndroidMoudle}/>
    </View>
   );
 };
