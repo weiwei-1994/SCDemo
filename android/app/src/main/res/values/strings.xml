@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SCDemo</string>
+    <string name="app_title">TestRN</string>
+    <string name="app_item_text">打开插件</string>
 </resources>
