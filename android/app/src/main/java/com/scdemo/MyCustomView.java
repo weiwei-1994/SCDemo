@@ -26,7 +26,8 @@ public class MyCustomView extends View {
 
     private int roundWidth = 50;
 
-    private String text = "test";
+    private String text="text";
+
     public MyCustomView(ThemedReactContext reactContext, PipelineDraweeControllerBuilder pipelineDraweeControllerBuilder, Object o, Context context) {
         super(context);
     }
@@ -43,11 +44,9 @@ public class MyCustomView extends View {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    @ReactProp(name = "titleText")
     public void setText(String jsString) {
-        text = jsString;
+            text = jsString;
     }
-
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -74,9 +73,9 @@ public class MyCustomView extends View {
 
         textPaint.setColor(Color.GREEN);
 
-        textPaint.setTextSize(22);
+        textPaint.setTextSize(50);
 
-        canvas.drawText(text,getWidth()/3,getWidth(),getWidth()/3,getHeight()/2,textPaint);
+        canvas.drawText(text,getWidth()/3,getHeight()/2,textPaint);
 
         int startX = 0, startY = 0, stopX = 0, stopY = 0;
 
@@ -96,6 +95,7 @@ public class MyCustomView extends View {
             canvas.drawLine(startX, startY, stopX, stopY, paint);
         }
     }
+
 
     public void onReceiveNativeEvent() {
         WritableMap event = Arguments.createMap();
