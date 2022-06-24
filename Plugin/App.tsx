@@ -22,8 +22,8 @@ const App = () => {
   const callAndroidMoudle = (message:string) => {
     if (Platform.OS == 'android') {
       setCount(count + 1);
-      // const androidNativeMoudle = NativeModules.ToastExample;
-      // androidNativeMoudle.show(message, 0);
+      const androidNativeMoudle = NativeModules.ToastExample;
+      androidNativeMoudle.show(message, 0);
     }
   }
 
@@ -35,7 +35,7 @@ const App = () => {
       <NativeView
         style= {styles.nativeView}
         titleText={count.toString()}
-        onChangeMessage={() => callAndroidMoudle('点击原生组件回调')}
+        onChangeMessage={(nativeEvent:any) => callAndroidMoudle(nativeEvent.message)}
       />
     </View>
   );

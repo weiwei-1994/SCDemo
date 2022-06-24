@@ -5,13 +5,12 @@ const RNNativeView = requireNativeComponent('RCTCustomView');
 
 const NativeView = (props: any) => {
 
-    const _onChange = (event: Event) =>{
+    const _onChange = (event: any) =>{
 
       if (!props.onChangeMessage) {
           return;
         }
-        console.log(event);
-        props.onChangeMessage();
+        props.onChangeMessage(event.nativeEvent);
       }
 
     return (
