@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
@@ -36,8 +37,8 @@ public class ReactViewManager extends SimpleViewManager<MyCustomView> {
          view.setText(jsString);
     }
 
-    @ReactProp(name= "refresh")
-    public void setOnReDrow(MyCustomView view){
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public void setRefresh(MyCustomView view){
         view.invalidate();
     }
 
