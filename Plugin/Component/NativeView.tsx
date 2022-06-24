@@ -1,24 +1,26 @@
 import { requireNativeComponent } from 'react-native';
-import React from 'react';
+import React, {forwardRef}from 'react';
 
 const RNNativeView = requireNativeComponent('RCTCustomView');
 
-const NativeView = (props: any) => {
+const NativeView = (props: any, ref: any) => {
 
     const _onChange = (event: Event) =>{
-        if (props.onChangeMessage) {
+
+      if (!props.onChangeMessage) {
           return;
         }
-        console.log(event.eventPhase.toString);
-        props.onChangeMessage(event.eventPhase.toString);
+        // console.log(event);
+        props.onChangeMessage();
       }
 
     return (
         <RNNativeView
+            ref={ref}
             {...props}
-            onChange={_onChange.bind(this)}
+            onChange={_onChange}
         />
         );
 }
 
-export default NativeView;
+export default forwardRef(NativeView);
