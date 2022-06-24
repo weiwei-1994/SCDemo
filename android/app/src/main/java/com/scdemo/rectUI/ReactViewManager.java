@@ -36,6 +36,11 @@ public class ReactViewManager extends SimpleViewManager<MyCustomView> {
          view.setText(jsString);
     }
 
+    @ReactProp(name= "refresh")
+    public void setOnReDrow(MyCustomView view){
+        view.invalidate();
+    }
+
     @NonNull
     @Override
     protected MyCustomView createViewInstance(@NonNull ThemedReactContext reactContext) {
