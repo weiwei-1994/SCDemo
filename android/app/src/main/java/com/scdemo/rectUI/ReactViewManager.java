@@ -1,5 +1,6 @@
 package com.scdemo.rectUI;
 
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -21,7 +22,6 @@ public class ReactViewManager extends SimpleViewManager<MyCustomView> {
     public static final String REACT_CLASS = "RCTCustomView";
     ReactApplicationContext reactApplicationContext;
     public String text = "test";
-    public MyCustomView myCustomView;
 
     public ReactViewManager(ReactApplicationContext reactContext){
         this.reactApplicationContext = reactContext;
@@ -35,13 +35,8 @@ public class ReactViewManager extends SimpleViewManager<MyCustomView> {
 
     @ReactProp(name = "titleText")
     public void setText(MyCustomView view,String jsString) {
-        this.myCustomView = view;
          view.setText(jsString);
-    }
-
-    @ReactMethod(isBlockingSynchronousMethod = true)
-    public void setRefresh(){
-        myCustomView.invalidate();
+         view.invalidate();
     }
 
     @NonNull
