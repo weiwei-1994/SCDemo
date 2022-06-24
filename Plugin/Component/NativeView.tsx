@@ -9,14 +9,14 @@ const NativeView = (props: any) => {
         if (props.onChangeMessage) {
           return;
         }
-        console.log(event);
-        props.onChangeMessage();
+        console.log(event.eventPhase.toString);
+        props.onChangeMessage(event.eventPhase.toString);
       }
 
     return (
         <RNNativeView
             {...props}
-            onChange={_onChange}
+            onChange={_onChange.bind(this)}
         />
         );
 }

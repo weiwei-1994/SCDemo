@@ -1,6 +1,7 @@
 package com.scdemo.rectUI;
 
 import android.view.View;
+import android.view.View.OnClickListener;
 
 import androidx.annotation.NonNull;
 
@@ -51,4 +52,5 @@ public class ReactViewManager extends SimpleViewManager<MyCustomView> {
                                 MapBuilder.of("bubbled", "onChange")))
                 .build();
     }
+
 }

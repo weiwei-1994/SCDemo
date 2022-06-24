@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -97,16 +99,18 @@ public class MyCustomView extends View {
         }
     }
 
-
     @Override
-    public void setOnClickListener(@Nullable OnClickListener l) {
-        //super.setOnClickListener(l);
-        new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                onReceiveNativeEvent();
-            }
-        };
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                setClickView();
+                return true;
+        }
+        return super.onTouchEvent(event);
+    }
+
+    public void setClickView(){
+        onReceiveNativeEvent();
     }
 
     public void onReceiveNativeEvent() {
@@ -118,4 +122,5 @@ public class MyCustomView extends View {
                 "topChange",
                 event);
     }
+
 }
