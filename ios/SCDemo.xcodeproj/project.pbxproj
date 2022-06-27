@@ -12,13 +12,13 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		3EBE1857286994330040C61C /* index.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EBE1854286994330040C61C /* index.jsbundle */; };
+		3EBE1858286994330040C61C /* basic.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EBE1855286994330040C61C /* basic.jsbundle */; };
+		3EBE1859286994330040C61C /* detail.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EBE1856286994330040C61C /* detail.jsbundle */; };
 		7699B88040F8A987B510C191 /* libPods-SCDemo-SCDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-SCDemo-SCDemoTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		FBB27AA7286415760014AC21 /* JSBridgeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB27A88286415760014AC21 /* JSBridgeManager.m */; };
 		FBB27AA8286415760014AC21 /* RCTBridge+LoadOtherJS.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB27A8B286415760014AC21 /* RCTBridge+LoadOtherJS.m */; };
-		FBB27AA9286415760014AC21 /* index.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = FBB27A8D286415760014AC21 /* index.jsbundle */; };
-		FBB27AAA286415760014AC21 /* basic.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = FBB27A8E286415760014AC21 /* basic.jsbundle */; };
-		FBB27AAB286415760014AC21 /* detail.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = FBB27A8F286415760014AC21 /* detail.jsbundle */; };
 		FBB27AAC286415760014AC21 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB27A92286415760014AC21 /* HomeController.m */; };
 		FBB27AAD286415760014AC21 /* ConfigPlugIn.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB27A95286415760014AC21 /* ConfigPlugIn.m */; };
 		FBB27AAE286415760014AC21 /* RNNativeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB27A97286415760014AC21 /* RNNativeView.m */; };
@@ -49,6 +49,9 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SCDemo/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-SCDemo-SCDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SCDemo-SCDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-SCDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCDemo.debug.xcconfig"; path = "Target Support Files/Pods-SCDemo/Pods-SCDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		3EBE1854286994330040C61C /* index.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = index.jsbundle; sourceTree = "<group>"; };
+		3EBE1855286994330040C61C /* basic.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic.jsbundle; sourceTree = "<group>"; };
+		3EBE1856286994330040C61C /* detail.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = detail.jsbundle; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-SCDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCDemo.release.xcconfig"; path = "Target Support Files/Pods-SCDemo/Pods-SCDemo.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-SCDemo-SCDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCDemo-SCDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-SCDemo-SCDemoTests/Pods-SCDemo-SCDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-SCDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SCDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,9 +62,6 @@
 		FBB27A89286415760014AC21 /* RCTBridge+LoadOtherJS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTBridge+LoadOtherJS.h"; sourceTree = "<group>"; };
 		FBB27A8A286415760014AC21 /* JSBridgeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBridgeManager.h; sourceTree = "<group>"; };
 		FBB27A8B286415760014AC21 /* RCTBridge+LoadOtherJS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTBridge+LoadOtherJS.m"; sourceTree = "<group>"; };
-		FBB27A8D286415760014AC21 /* index.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = index.jsbundle; sourceTree = "<group>"; };
-		FBB27A8E286415760014AC21 /* basic.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic.jsbundle; sourceTree = "<group>"; };
-		FBB27A8F286415760014AC21 /* detail.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = detail.jsbundle; sourceTree = "<group>"; };
 		FBB27A92286415760014AC21 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; };
 		FBB27A93286415760014AC21 /* ConfigPlugIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigPlugIn.h; sourceTree = "<group>"; };
 		FBB27A94286415760014AC21 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
@@ -116,9 +116,9 @@
 		13B07FAE1A68108700A75B9A /* SCDemo */ = {
 			isa = PBXGroup;
 			children = (
+				3EBE1853286994330040C61C /* PluginBundle */,
 				FBB27A87286415760014AC21 /* Bridge */,
 				FBB27A90286415760014AC21 /* Class */,
-				FBB27A8C286415760014AC21 /* PluginBundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -137,6 +137,16 @@
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-SCDemo-SCDemoTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3EBE1853286994330040C61C /* PluginBundle */ = {
+			isa = PBXGroup;
+			children = (
+				3EBE1854286994330040C61C /* index.jsbundle */,
+				3EBE1855286994330040C61C /* basic.jsbundle */,
+				3EBE1856286994330040C61C /* detail.jsbundle */,
+			);
+			path = PluginBundle;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -190,16 +200,6 @@
 				FBB27A8B286415760014AC21 /* RCTBridge+LoadOtherJS.m */,
 			);
 			path = Bridge;
-			sourceTree = "<group>";
-		};
-		FBB27A8C286415760014AC21 /* PluginBundle */ = {
-			isa = PBXGroup;
-			children = (
-				FBB27A8D286415760014AC21 /* index.jsbundle */,
-				FBB27A8E286415760014AC21 /* basic.jsbundle */,
-				FBB27A8F286415760014AC21 /* detail.jsbundle */,
-			);
-			path = PluginBundle;
 			sourceTree = "<group>";
 		};
 		FBB27A90286415760014AC21 /* Class */ = {
@@ -339,11 +339,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBB27AA9286415760014AC21 /* index.jsbundle in Resources */,
-				FBB27AAA286415760014AC21 /* basic.jsbundle in Resources */,
+				3EBE1857286994330040C61C /* index.jsbundle in Resources */,
+				3EBE1858286994330040C61C /* basic.jsbundle in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				FBB27AAB286415760014AC21 /* detail.jsbundle in Resources */,
+				3EBE1859286994330040C61C /* detail.jsbundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
