@@ -1,5 +1,6 @@
 package com.scdemo.rectUI;
 
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -7,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
@@ -34,6 +36,7 @@ public class ReactViewManager extends SimpleViewManager<MyCustomView> {
     @ReactProp(name = "titleText")
     public void setText(MyCustomView view,String jsString) {
          view.setText(jsString);
+         view.invalidate();
     }
 
     @NonNull

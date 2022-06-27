@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import {
   StyleSheet,
   Platform,
@@ -17,11 +17,13 @@ import {
 import NativeView from './Component/NativeView'
 
 const App = () => {
+  const [count, setCount] = useState(1);
 
   const callAndroidMoudle = (message:string) => {
     if (Platform.OS == 'android') {
+      setCount(count + 1);
       const androidNativeMoudle = NativeModules.ToastExample;
-      androidNativeMoudle.show(message, 1);
+      androidNativeMoudle.show(message, 0);
     }
   }
 
@@ -32,8 +34,8 @@ const App = () => {
         onPress={() => callAndroidMoudle('调用安卓原生模块')} />
       <NativeView
         style= {styles.nativeView}
-        titleText='哈哈哈'
-        onChangeMessage={() => callAndroidMoudle('点击原生组件回调')}
+        titleText={count.toString()}
+        onChangeMessage={(nativeEvent:any) => callAndroidMoudle(nativeEvent.message)}
       />
     </View>
   );
