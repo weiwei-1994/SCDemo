@@ -146,7 +146,7 @@
 {
   NSError *error = nil;
   //获取detail Bundle文件
-  NSData * detailBundleData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] URLForResource:@"detail" withExtension:@"jsbundle"].path
+  NSData * detailBundleData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] URLForResource:@"business" withExtension:@"jsbundle"].path
                                              options:NSDataReadingMappedIfSafe
                                                error:&error];
   if (!error && ![JSBridgeManager shareManager].isHaveLoadDetail) {
@@ -154,7 +154,7 @@
     [[JSBridgeManager shareManager].bridge.batchedBridge executeSourceCode:detailBundleData sync:NO];
     [JSBridgeManager shareManager].isHaveLoadDetail = YES;
   }
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[JSBridgeManager shareManager].bridge moduleName:@"RobotVacummPlugin" initialProperties:nil];
+  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[JSBridgeManager shareManager].bridge moduleName:@"SCDemo" initialProperties:nil];
   return rootView;
 }
 

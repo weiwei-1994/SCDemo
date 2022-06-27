@@ -12,9 +12,8 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		3EBE1857286994330040C61C /* index.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EBE1854286994330040C61C /* index.jsbundle */; };
-		3EBE1858286994330040C61C /* basic.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EBE1855286994330040C61C /* basic.jsbundle */; };
-		3EBE1859286994330040C61C /* detail.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EBE1856286994330040C61C /* detail.jsbundle */; };
+		3EBE185D2869B2250040C61C /* business.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EBE185B2869B2240040C61C /* business.jsbundle */; };
+		3EBE185E2869B2250040C61C /* basic.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EBE185C2869B2240040C61C /* basic.jsbundle */; };
 		7699B88040F8A987B510C191 /* libPods-SCDemo-SCDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-SCDemo-SCDemoTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		FBB27AA7286415760014AC21 /* JSBridgeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB27A88286415760014AC21 /* JSBridgeManager.m */; };
@@ -49,9 +48,8 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SCDemo/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-SCDemo-SCDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SCDemo-SCDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-SCDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCDemo.debug.xcconfig"; path = "Target Support Files/Pods-SCDemo/Pods-SCDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		3EBE1854286994330040C61C /* index.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = index.jsbundle; sourceTree = "<group>"; };
-		3EBE1855286994330040C61C /* basic.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic.jsbundle; sourceTree = "<group>"; };
-		3EBE1856286994330040C61C /* detail.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = detail.jsbundle; sourceTree = "<group>"; };
+		3EBE185B2869B2240040C61C /* business.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = business.jsbundle; sourceTree = "<group>"; };
+		3EBE185C2869B2240040C61C /* basic.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic.jsbundle; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-SCDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCDemo.release.xcconfig"; path = "Target Support Files/Pods-SCDemo/Pods-SCDemo.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-SCDemo-SCDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCDemo-SCDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-SCDemo-SCDemoTests/Pods-SCDemo-SCDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-SCDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SCDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +114,7 @@
 		13B07FAE1A68108700A75B9A /* SCDemo */ = {
 			isa = PBXGroup;
 			children = (
-				3EBE1853286994330040C61C /* PluginBundle */,
+				3EBE185A2869B2240040C61C /* PluginBundle */,
 				FBB27A87286415760014AC21 /* Bridge */,
 				FBB27A90286415760014AC21 /* Class */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -139,12 +137,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3EBE1853286994330040C61C /* PluginBundle */ = {
+		3EBE185A2869B2240040C61C /* PluginBundle */ = {
 			isa = PBXGroup;
 			children = (
-				3EBE1854286994330040C61C /* index.jsbundle */,
-				3EBE1855286994330040C61C /* basic.jsbundle */,
-				3EBE1856286994330040C61C /* detail.jsbundle */,
+				3EBE185B2869B2240040C61C /* business.jsbundle */,
+				3EBE185C2869B2240040C61C /* basic.jsbundle */,
 			);
 			path = PluginBundle;
 			sourceTree = "<group>";
@@ -339,11 +336,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EBE1857286994330040C61C /* index.jsbundle in Resources */,
-				3EBE1858286994330040C61C /* basic.jsbundle in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				3EBE185E2869B2250040C61C /* basic.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				3EBE1859286994330040C61C /* detail.jsbundle in Resources */,
+				3EBE185D2869B2250040C61C /* business.jsbundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
