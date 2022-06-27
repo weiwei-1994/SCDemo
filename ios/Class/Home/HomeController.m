@@ -50,7 +50,7 @@
   [leftBt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
   [leftBt addTarget:self action:@selector(setDebug) forControlEvents:UIControlEventTouchUpInside];
   self.leftBt = leftBt;
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBt];
+  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBt];
   
   
     self.dataSource = @[@"打开插件"];

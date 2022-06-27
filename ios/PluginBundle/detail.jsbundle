@@ -1,0 +1,5 @@
+__d(function(g,r,i,a,m,e,d){var n=r(d[0]),t=r(d[1]),o=n(r(d[2])),u=r(d[3]);t.AppRegistry.registerComponent(u.name,function(){return o.default})},"168726dbe96b3ce427e7fedce31bb0bc",["3e65d9ce974965f47088216bd50f5085","51c4a6a559f257330a0d314f47406565","6fecf8152f0bf73e3a3888a8ecc92a76","6a1b6963e828b69fcc667e3c45df78bb"]);
+__d(function(g,r,i,a,m,e,d){var t=r(d[0]);Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var n=t(r(d[1])),l=r(d[2]),u=l.StyleSheet.create({contain:{flex:1,alignItems:'center',justifyContent:"center"}}),c=function(t){return n.default.createElement(l.View,{style:u.contain},n.default.createElement(l.Text,null,"hello word"))};e.default=c},"6fecf8152f0bf73e3a3888a8ecc92a76",["3e65d9ce974965f47088216bd50f5085","2c4d30703ab8e5d9543b5c3fe87b72c2","51c4a6a559f257330a0d314f47406565"]);
+__d(function(m,o,a,n,u,i,t){u.exports={name:"RobotVacummPlugin",displayName:"RobotVacummPlugin"}},"6a1b6963e828b69fcc667e3c45df78bb",[]);
+__r("4e053c1391f5aa8e5d34f15159692cee");
+__r("168726dbe96b3ce427e7fedce31bb0bc");
