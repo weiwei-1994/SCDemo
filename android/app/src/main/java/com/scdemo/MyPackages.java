@@ -21,6 +21,7 @@ public class MyPackages implements ReactPackage {
         modules.add(new ToastModule(reactContext));
         modules.add(new ReactImageManager(reactContext));
         modules.add(new ReactViewManager(reactContext));
+        modules.add(new BackModule(reactContext));
         return modules;
     }
 
