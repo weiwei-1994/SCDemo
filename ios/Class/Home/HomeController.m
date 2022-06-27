@@ -22,6 +22,11 @@
 @property(nonatomic,strong)NSString * moduleName;
 
 
+@property(nonatomic,assign)BOOL OpenDebug;
+
+@property(nonatomic,strong)UIButton* leftBt;
+
+
 
 @end
 
@@ -39,12 +44,32 @@
   [rightBt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
   [rightBt addTarget:self action:@selector(gotoSetting) forControlEvents:UIControlEventTouchUpInside];
   self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBt];
+  
+  UIButton * leftBt = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 150, 50)];
+  [leftBt setTitle:@"开启调试" forState:UIControlStateNormal];
+  [leftBt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+  [leftBt addTarget:self action:@selector(setDebug) forControlEvents:UIControlEventTouchUpInside];
+  self.leftBt = leftBt;
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBt];
+  
+  
     self.dataSource = @[@"打开插件"];
     [self.view addSubview:self.tableView];
   
     // Do any additional setup after loading the view.
 }
-
+-(void)setDebug{
+  
+  
+  self.OpenDebug = !self.OpenDebug;
+  if (self.OpenDebug == YES) {
+    
+    [self.leftBt setTitle:@"调试已开启" forState:UIControlStateNormal];
+  }else{
+    
+      [self.leftBt setTitle:@"调试已关闭" forState:UIControlStateNormal];
+  }
+}
 -(void)gotoSetting{
   ConfigPlugIn * PlugInSet = [[ConfigPlugIn alloc] init];
   __weak typeof(self) weakSelf = self;
@@ -98,14 +123,18 @@
 
   ReactNativeController * reactNavtiveVC = [[ReactNativeController alloc]init];
   
-  if (NO) {
+  if (!self.OpenDebug ) {
     RCTRootView * rootView = [self loadDetailBundle];
     
     reactNavtiveVC.view = rootView;
   }else{
     RCTRootView * rootView = [self loadWithBundleURL];
+    if (rootView) {
+      reactNavtiveVC.view = rootView;
+    }else{
+      return;
+    }
     
-    reactNavtiveVC.view = rootView;
   }
   
   
