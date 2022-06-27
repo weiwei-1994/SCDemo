@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.packagerconnection.PackagerConnectionSettings;
@@ -48,13 +49,20 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
 //        editor.putString("debug_http_host",local.getText().toString());
 //        editor.commit();
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent in = new Intent();
                 in.setClass(ListAcitvity.this, RnActivity.class);
                 RnActivity.bundleName = et.getText().toString();
+                if(et.getText().toString().length()==0||et.getText().toString().equals("")){
+                    Toast.makeText(ListAcitvity.this,"请输入插件名称",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(local.getText().toString().length()==0||local.getText().toString().equals("")){
+                    Toast.makeText(ListAcitvity.this,"请输入IP:端口调试",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 new PackagerConnectionSettings(getApplicationContext()).setDebugServerHost(local.getText().toString());
                 startActivity(in);
             }
