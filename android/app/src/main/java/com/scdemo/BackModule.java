@@ -1,5 +1,6 @@
 package com.scdemo;
 
+import android.content.Intent;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,8 @@ public class BackModule extends ReactContextBaseJavaModule {
 
     private static final String NATIVE_NAME = "NativeModule";
 
+    private String simpleName = "finishApp";
+
     public BackModule(ReactApplicationContext context){
         super(context);
         reactApplicationContext = context;
@@ -31,6 +34,8 @@ public class BackModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void nativeStackPop(){
-        RnActivity.rnActivity.finish();
+        Intent in = new Intent();
+        in.setAction(simpleName);
+        MainApplication.getContext().sendBroadcast(in);
     }
 }
