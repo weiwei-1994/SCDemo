@@ -7,6 +7,11 @@ public class RnActivity extends ReactActivity {
     public static String bundleName;
 
     @Override
+    protected String getMainComponentName() {
+        return "SCDemo";
+    }
+
+    @Override
     protected ReactActivityDelegate createReactActivityDelegate() {
 
         DispatchDelegate delegate = new DispatchDelegate(this, bundleName);
