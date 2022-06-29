@@ -4,6 +4,7 @@ import {
     Platform,
     View,
     Text,
+    Image,
     Button,
     NativeModules
 } from 'react-native';
@@ -23,6 +24,10 @@ const SettingPage = (props: any) => {
                     '2012-05-19': { disabled: true, disableTouchEvent: true }
                 }}
             />
+            <Image 
+            style={styles.image}
+            source={require('../Resource/star.png')}
+            />
         </View>
     );
 }
@@ -32,6 +37,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    image:{
+        marginTop:20,
+        width:100,
+        height:100
     }
 });
 
