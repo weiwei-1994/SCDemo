@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,11 +12,25 @@
         android:textSize="22sp"
         android:layout_marginTop="30dp"/>
 
+    <Button
+        android:id="@+id/btn_fenbao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:text="分包测试"
+        android:background="#ff00ffaa"
+        />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/et"
         android:textSize="22sp"
+        android:layout_marginTop="20dp"
         android:hint="plugin Name"
         android:layout_marginBottom="10dp"/>
 
