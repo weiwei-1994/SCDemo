@@ -12,10 +12,12 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		3EBE185D2869B2250040C61C /* business.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EBE185B2869B2240040C61C /* business.jsbundle */; };
-		3EBE185E2869B2250040C61C /* basic.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EBE185C2869B2240040C61C /* basic.jsbundle */; };
 		7699B88040F8A987B510C191 /* libPods-SCDemo-SCDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-SCDemo-SCDemoTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		FBA010D5286C350F00095DA2 /* business.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = FBA010C1286C350F00095DA2 /* business.jsbundle */; };
+		FBA010D6286C350F00095DA2 /* basic.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = FBA010CE286C350F00095DA2 /* basic.jsbundle */; };
+		FBA03C31286D3F4000FA9109 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = FBA03C30286D3F4000FA9109 /* assets */; };
+		FBA03C33286D3F6400FA9109 /* assets1 in Resources */ = {isa = PBXBuildFile; fileRef = FBA03C32286D3F6400FA9109 /* assets1 */; };
 		FBB27AA7286415760014AC21 /* JSBridgeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB27A88286415760014AC21 /* JSBridgeManager.m */; };
 		FBB27AA8286415760014AC21 /* RCTBridge+LoadOtherJS.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB27A8B286415760014AC21 /* RCTBridge+LoadOtherJS.m */; };
 		FBB27AAC286415760014AC21 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB27A92286415760014AC21 /* HomeController.m */; };
@@ -48,14 +50,16 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SCDemo/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-SCDemo-SCDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SCDemo-SCDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-SCDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCDemo.debug.xcconfig"; path = "Target Support Files/Pods-SCDemo/Pods-SCDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		3EBE185B2869B2240040C61C /* business.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = business.jsbundle; sourceTree = "<group>"; };
-		3EBE185C2869B2240040C61C /* basic.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic.jsbundle; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-SCDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCDemo.release.xcconfig"; path = "Target Support Files/Pods-SCDemo/Pods-SCDemo.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-SCDemo-SCDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCDemo-SCDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-SCDemo-SCDemoTests/Pods-SCDemo-SCDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-SCDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SCDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SCDemo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-SCDemo-SCDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCDemo-SCDemoTests.release.xcconfig"; path = "Target Support Files/Pods-SCDemo-SCDemoTests/Pods-SCDemo-SCDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		FBA010C1286C350F00095DA2 /* business.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = business.jsbundle; sourceTree = "<group>"; };
+		FBA010CE286C350F00095DA2 /* basic.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic.jsbundle; sourceTree = "<group>"; };
+		FBA03C30286D3F4000FA9109 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		FBA03C32286D3F6400FA9109 /* assets1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets1; sourceTree = "<group>"; };
 		FBB27A88286415760014AC21 /* JSBridgeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBridgeManager.m; sourceTree = "<group>"; };
 		FBB27A89286415760014AC21 /* RCTBridge+LoadOtherJS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTBridge+LoadOtherJS.h"; sourceTree = "<group>"; };
 		FBB27A8A286415760014AC21 /* JSBridgeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBridgeManager.h; sourceTree = "<group>"; };
@@ -114,7 +118,8 @@
 		13B07FAE1A68108700A75B9A /* SCDemo */ = {
 			isa = PBXGroup;
 			children = (
-				3EBE185A2869B2240040C61C /* PluginBundle */,
+				FBA010CD286C350F00095DA2 /* mainBundle */,
+				FBA010C0286C350F00095DA2 /* PluginBundle */,
 				FBB27A87286415760014AC21 /* Bridge */,
 				FBB27A90286415760014AC21 /* Class */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -135,15 +140,6 @@
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-SCDemo-SCDemoTests.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3EBE185A2869B2240040C61C /* PluginBundle */ = {
-			isa = PBXGroup;
-			children = (
-				3EBE185B2869B2240040C61C /* business.jsbundle */,
-				3EBE185C2869B2240040C61C /* basic.jsbundle */,
-			);
-			path = PluginBundle;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -186,6 +182,24 @@
 				89C6BE57DB24E9ADA2F236DE /* Pods-SCDemo-SCDemoTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		FBA010C0286C350F00095DA2 /* PluginBundle */ = {
+			isa = PBXGroup;
+			children = (
+				FBA03C32286D3F6400FA9109 /* assets1 */,
+				FBA010C1286C350F00095DA2 /* business.jsbundle */,
+			);
+			path = PluginBundle;
+			sourceTree = "<group>";
+		};
+		FBA010CD286C350F00095DA2 /* mainBundle */ = {
+			isa = PBXGroup;
+			children = (
+				FBA03C30286D3F4000FA9109 /* assets */,
+				FBA010CE286C350F00095DA2 /* basic.jsbundle */,
+			);
+			path = mainBundle;
 			sourceTree = "<group>";
 		};
 		FBB27A87286415760014AC21 /* Bridge */ = {
@@ -337,9 +351,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				3EBE185E2869B2250040C61C /* basic.jsbundle in Resources */,
+				FBA010D6286C350F00095DA2 /* basic.jsbundle in Resources */,
+				FBA03C31286D3F4000FA9109 /* assets in Resources */,
+				FBA03C33286D3F6400FA9109 /* assets1 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				3EBE185D2869B2250040C61C /* business.jsbundle in Resources */,
+				FBA010D5286C350F00095DA2 /* business.jsbundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

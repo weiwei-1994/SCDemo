@@ -22,7 +22,7 @@ const commonModulesIndexMap =
 // 针对id使用数字，随机生成
 const randomNum = +`${+new Date()}`.slice(-9);
 // 是否使用index作为表示
-const moduleIdByIndex = true;
+const moduleIdByIndex = false;
 
 function clearFileInfo() {
   if (moduleIdByIndex) {
@@ -81,6 +81,7 @@ function processModuleFilter() {
         return false;
       }
     }
+    console.log(path);
 
     return true;
   };
