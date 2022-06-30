@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.packagerconnection.PackagerConnectionSettings;
+import com.scdemo.fenbao.demo.BussinessActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,7 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
     private EditText et;
 
     private EditText local;
+    private Button btn_fenbao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -40,6 +43,7 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
         listView = findViewById(R.id.recycleView_id);
         et = findViewById(R.id.et);
         local = findViewById(R.id.localhost);
+        btn_fenbao = findViewById(R.id.btn_fenbao);
         titleList.add("打开插件");
         listAdapter = new ListAdapter(titleList,this);
         listView.setAdapter(listAdapter);
@@ -69,6 +73,8 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
         });
 
 
+        btn_fenbao.setOnClickListener(v -> openFenBao());
+
 
 
 
@@ -76,6 +82,11 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
 
 
     }
+
+    private void openFenBao ( ) {
+        startActivity(new Intent(ListAcitvity.this, BussinessActivity.class));
+    }
+
 
     @Override
     public void invokeDefaultOnBackPressed() {

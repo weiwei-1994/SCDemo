@@ -15,7 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) RCTBridge * bridge;
 @property (nonatomic, assign) BOOL isHaveLoadDetail;
 +(instancetype)shareManager;
--(void)start;
+-(void)startWithURL:(NSURL *)URl;
+
+
+
++(NSString *)getMainBundlePath;
++(NSString *)getPluginPathWithPluginName:(NSString *)name;
 @end
 
 NS_ASSUME_NONNULL_END
