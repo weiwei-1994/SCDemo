@@ -27,8 +27,10 @@ const moduleIdByIndex = false;
 function clearFileInfo() {
   if (moduleIdByIndex) {
     fs.writeFileSync(commonModulesIndexMapFileName, '{}');
+
   } else {
     fs.writeFileSync(commonModulesFileName, '[]');
+
   }
 }
 
@@ -81,7 +83,6 @@ function processModuleFilter() {
         return false;
       }
     }
-    console.log(path);
 
     return true;
   };
@@ -93,11 +94,13 @@ function createCommonModuleIdFactory() {
   let nextId = 0;
   const fileToIdMap = new Map();
 
+  console.log("初始化")
   return path => {
     if (!moduleIdByIndex) {
       const name = getModuleIdByName(base, path);
       const relPath = pathM.relative(base, path);
       if (!commonModules.includes(relPath)) {
+        console.log("添加文件" + relPath)
         // 记录路径
         commonModules.push(relPath);
         fs.writeFileSync(commonModulesFileName, JSON.stringify(commonModules));

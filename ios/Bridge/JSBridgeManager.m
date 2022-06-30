@@ -19,9 +19,24 @@
   return manager;
 }
 
--(void)start
+-(void)startWithURL:(NSURL *)URl
 {
-  self.bridge = [[RCTBridge alloc] initWithBundleURL:[[NSBundle mainBundle] URLForResource:@"basic" withExtension:@"jsbundle"] moduleProvider:nil launchOptions:nil];
+  self.isHaveLoadDetail = NO;
+  self.bridge = [[RCTBridge alloc] initWithBundleURL:URl moduleProvider:nil launchOptions:nil];
+}
+
++(NSString *)getMainBundlePath{
+  NSString *path = [NSString stringWithFormat:@"%@/%@/%@/basic.jsbundle",[JSBridgeManager documentsDir],@"Plugins",@"MianBundle"];
+  return path;
+}
++(NSString *)getPluginPathWithPluginName:(NSString *)name{
+  NSString *path = [NSString stringWithFormat:@"%@/%@/%@/%@/business.jsbundle",[JSBridgeManager documentsDir],@"Plugins",@"PluginBundle",name];
+  return path;
+}
+
+
++ (NSString *)documentsDir {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
 }
 
 @end
