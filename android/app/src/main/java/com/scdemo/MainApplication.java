@@ -3,9 +3,48 @@ package com.scdemo;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.react.PackageList;
+import com.facebook.react.ReactApplication;
+import com.facebook.react.ReactInstanceManager;
+import com.facebook.react.ReactNativeHost;
+import com.facebook.react.ReactPackage;
+import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
-public class MainApplication extends Application {
+import java.util.Arrays;
+import java.util.List;
+
+import androidx.annotation.Nullable;
+
+public class MainApplication extends Application implements ReactApplication{
+
+  private final ReactNativeHost reactNativeHost = new ReactNativeHost(this) {
+    @Override
+    public boolean getUseDeveloperSupport ( ) {
+      return false;
+    }
+
+    @Override
+    protected List <ReactPackage> getPackages ( ) {
+      List<ReactPackage> packages = new PackageList(this).getPackages();
+      packages.add(new MyPackages());
+//                return Arrays.<ReactPackage>asList(
+//                        new MainReactPackage()
+//                );
+      return packages;
+    }
+
+    @Nullable
+    @Override
+    protected String getBundleAssetName ( ) {
+      return "basic.jsbundle";
+    }
+
+    @Override
+    protected String getJSMainModuleName ( ) {
+      return "index";
+    }
+  };
 
   private static Context context;
   @Override
@@ -24,4 +63,8 @@ public class MainApplication extends Application {
   }
 
 
+  @Override
+  public ReactNativeHost getReactNativeHost ( ) {
+    return reactNativeHost;
+  }
 }
