@@ -1,5 +1,7 @@
 const fs = require('fs');
 const filePath = process.argv[2];
+
+console.log(process.argv[2]);
 console.log('正在处理文件:' + filePath);
 if (filePath) {
   if (fs.existsSync(filePath)) {
