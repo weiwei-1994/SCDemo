@@ -1,11 +1,9 @@
-/**
- * Metro configuration for React Native
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
+const metroCfg = require('./compile/metro-base');
+metroCfg.clearFileInfo();
 module.exports = {
+  serializer: {
+    createModuleIdFactory: metroCfg.createCommonModuleIdFactory,
+  },
   transformer: {
     getTransformOptions: async () => ({
       transform: {
