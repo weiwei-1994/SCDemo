@@ -73,13 +73,13 @@
     
     
   }]];
-  [alertController addAction:[UIAlertAction actionWithTitle:@"本地沙河资源" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+  [alertController addAction:[UIAlertAction actionWithTitle:@"本地沙盒资源" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     weakSelf.OpenType = 2;
     NSString * mainPath = [JSBridgeManager getMainBundlePath];
     if ([weakSelf isExistsAtPath:mainPath]) {
       [[JSBridgeManager shareManager] startWithURL:[NSURL URLWithString:mainPath]];
     }
-    [weakSelf.leftBt setTitle:@"本地沙河资源" forState:UIControlStateNormal];
+    [weakSelf.leftBt setTitle:@"本地沙盒资源" forState:UIControlStateNormal];
     
   }]];
   
@@ -178,9 +178,6 @@
 
 //沙河拼接包
 -(RCTRootView *)loadWithDocumentURL{
-  
-  
-  
   
   NSString * path = [JSBridgeManager getPluginPathWithPluginName:@"SCDemo"];
   
