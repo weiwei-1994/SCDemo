@@ -99,7 +99,7 @@
   [alertController addAction:[UIAlertAction actionWithTitle:@"本地bundle资源" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     
     weakSelf.OpenType = 1;
-    [[JSBridgeManager shareManager] startWithURL:[[NSBundle mainBundle] URLForResource:@"basic" withExtension:@"jsbundle"]];
+    [[JSBridgeManager shareManager] startWithURL:[[NSBundle mainBundle] URLForResource:@"common" withExtension:@"jsbundle"]];
     [weakSelf.leftBt setTitle:@"本地bundle资源" forState:UIControlStateNormal];
     
     [weakSelf updateSource];

@@ -1,7 +1,5 @@
 const fs = require('fs');
 const filePath = process.argv[2];
-
-const zipCom = require('./zip-compressing');
 console.log('正在处理文件:' + filePath);
 
 if (filePath) {
@@ -21,8 +19,6 @@ if (filePath) {
           const datas = data.split('\n');
           const linesExceptFirst = datas.slice(0, datas.length - 1).join('\n');
           fs.writeFileSync(filePath, linesExceptFirst);
-
-          zipCom.creatZIP();
         },
       );
     } catch (error) {

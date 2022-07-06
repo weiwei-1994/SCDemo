@@ -26,7 +26,7 @@
 }
 
 +(NSString *)getMainBundlePath{
-  NSString *path = [NSString stringWithFormat:@"%@/%@/%@/basic.jsbundle",[JSBridgeManager documentsDir],@"Plugins",@"MianBundle"];
+  NSString *path = [NSString stringWithFormat:@"%@/%@/%@/common.jsbundle",[JSBridgeManager documentsDir],@"Plugins",@"MianBundle"];
   return path;
 }
 +(NSString *)getPluginPathWithPluginName:(NSString *)name{
