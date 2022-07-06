@@ -8,7 +8,10 @@ import com.facebook.react.PackageList;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
+import com.facebook.react.shell.MainReactPackage;
+import com.microsoft.codepush.react.CodePush;
 
+import java.util.Arrays;
 import java.util.List;
 
 //DispatchDelegate
@@ -35,12 +38,21 @@ public class DispatchDelegate extends ReactActivityDelegate {
             //注册原生模块，这样
             @Override
             protected List<ReactPackage> getPackages() {
-                List<ReactPackage> packages = new PackageList(this).getPackages();
-                packages.add(new MyPackages());
-//                return Arrays.<ReactPackage>asList(
-//                        new MainReactPackage()
-//                );
-                return packages;
+//                List<ReactPackage> packages = new PackageList(this).getPackages();
+//                packages.add(new MyPackages());
+                return Arrays.<ReactPackage>asList(
+                        new MyPackages(),
+                        new MainReactPackage(),
+                        new CodePush(BuildConfig.CODEPUSH_KEY,MainApplication.getContext(),BuildConfig.DEBUG)
+                );
+//                return packages;
+            }
+
+            @Nullable
+            @Override
+            protected String getJSBundleFile() {
+                //return super.getJSBundleFile();
+                return CodePush.getJSBundleFile();
             }
 
             @Nullable

@@ -16,35 +16,35 @@ import java.util.List;
 
 import androidx.annotation.Nullable;
 
-public class MainApplication extends Application implements ReactApplication{
+public class MainApplication extends Application{
 
-  private final ReactNativeHost reactNativeHost = new ReactNativeHost(this) {
-    @Override
-    public boolean getUseDeveloperSupport ( ) {
-      return false;
-    }
-
-    @Override
-    protected List <ReactPackage> getPackages ( ) {
-      List<ReactPackage> packages = new PackageList(this).getPackages();
-      packages.add(new MyPackages());
-//                return Arrays.<ReactPackage>asList(
-//                        new MainReactPackage()
-//                );
-      return packages;
-    }
-
-    @Nullable
-    @Override
-    protected String getBundleAssetName ( ) {
-      return "basic.jsbundle";
-    }
-
-    @Override
-    protected String getJSMainModuleName ( ) {
-      return "index";
-    }
-  };
+//  private final ReactNativeHost reactNativeHost = new ReactNativeHost(this) {
+//    @Override
+//    public boolean getUseDeveloperSupport ( ) {
+//      return false;
+//    }
+//
+//    @Override
+//    protected List <ReactPackage> getPackages ( ) {
+//      List<ReactPackage> packages = new PackageList(this).getPackages();
+//      packages.add(new MyPackages());
+////                return Arrays.<ReactPackage>asList(
+////                        new MainReactPackage()
+////                );
+//      return packages;
+//    }
+//
+//    @Nullable
+//    @Override
+//    protected String getBundleAssetName ( ) {
+//      return "basic.jsbundle";
+//    }
+//
+//    @Override
+//    protected String getJSMainModuleName ( ) {
+//      return "index";
+//    }
+//  };
 
   private static Context context;
   @Override
@@ -63,8 +63,8 @@ public class MainApplication extends Application implements ReactApplication{
   }
 
 
-  @Override
-  public ReactNativeHost getReactNativeHost ( ) {
-    return reactNativeHost;
-  }
+//  @Override
+//  public ReactNativeHost getReactNativeHost ( ) {
+//    return reactNativeHost;
+//  }
 }
