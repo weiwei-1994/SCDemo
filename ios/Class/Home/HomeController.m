@@ -12,6 +12,7 @@
 #import "ConfigPlugIn.h"
 #import "JSBridgeManager.h"
 #import "RCTBridge+LoadOtherJS.h"
+#import "PluginModel.h"
 @interface HomeController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong)NSArray * dataSource;
@@ -21,7 +22,7 @@
 @property(nonatomic,strong)NSString * localHost;
 @property(nonatomic,strong)NSString * moduleName;
 
-
+//0 调试 1 bundle 2沙河
 @property(nonatomic,assign)NSInteger OpenType;
 
 @property(nonatomic,strong)UIButton* leftBt;
@@ -48,38 +49,73 @@
   UIButton * leftBt = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 150, 50)];
   [leftBt setTitle:@"服务调试模式" forState:UIControlStateNormal];
   [leftBt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  [leftBt addTarget:self action:@selector(setDebug) forControlEvents:UIControlEventTouchUpInside];
+  [leftBt addTarget:self action:@selector(clickMode) forControlEvents:UIControlEventTouchUpInside];
   self.leftBt = leftBt;
   self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBt];
   
-  
-  self.dataSource = @[@"打开插件"];
+  [self updateSource];
   [self.view addSubview:self.tableView];
   
   // Do any additional setup after loading the view.
 }
--(void)setDebug{
+
+
+-(void)updateSource{
+  
+  if (self.OpenType == 0) {
+    
+    PluginModel * model0 = [[PluginModel alloc] init];
+    model0.moduleName = @"调试APP";
+    self.dataSource = @[model0];
+    
+  }else if(self.OpenType == 1){
+    PluginModel * model0 = [[PluginModel alloc] init];
+    model0.moduleName = @"SCDemo";
+    model0.filePath = [[NSBundle mainBundle] URLForResource:@"business" withExtension:@"jsbundle"].path;
+    
+    self.dataSource = @[model0];
+    
+  }else if(self.OpenType == 2){
+    PluginModel * model0 = [[PluginModel alloc] init];
+    model0.moduleName = @"SCDemo";
+    model0.filePath =  [JSBridgeManager getPluginPathWithPluginName:@"SCDemo"];
+    
+    self.dataSource = @[model0];
+    
+  }
+  
+}
+
+//   点击选择模式
+-(void)clickMode{
   UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择加载资源" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
   __weak typeof(self)weakSelf = self;
   [alertController addAction:[UIAlertAction actionWithTitle:@"服务调试模式" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     weakSelf.OpenType = 0;
     [weakSelf.leftBt setTitle:@"服务调试模式" forState:UIControlStateNormal];
+    [weakSelf updateSource];
+    [weakSelf.tableView reloadData];
   }]];
   [alertController addAction:[UIAlertAction actionWithTitle:@"本地bundle资源" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    weakSelf.OpenType = 1;
     
-    [[JSBridgeManager shareManager] startWithURL:[[NSBundle mainBundle] URLForResource:@"basic" withExtension:@"jsbundle"]];
+    weakSelf.OpenType = 1;
+    [[JSBridgeManager shareManager] startWithURL:[[NSBundle mainBundle] URLForResource:@"common" withExtension:@"jsbundle"]];
     [weakSelf.leftBt setTitle:@"本地bundle资源" forState:UIControlStateNormal];
     
+    [weakSelf updateSource];
+    [weakSelf.tableView reloadData];
     
   }]];
-  [alertController addAction:[UIAlertAction actionWithTitle:@"本地沙盒资源" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+  [alertController addAction:[UIAlertAction actionWithTitle:@"本地沙河资源" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    
     weakSelf.OpenType = 2;
     NSString * mainPath = [JSBridgeManager getMainBundlePath];
     if ([weakSelf isExistsAtPath:mainPath]) {
       [[JSBridgeManager shareManager] startWithURL:[NSURL URLWithString:mainPath]];
     }
-    [weakSelf.leftBt setTitle:@"本地沙盒资源" forState:UIControlStateNormal];
+    [weakSelf.leftBt setTitle:@"本地沙河资源" forState:UIControlStateNormal];
+    [weakSelf updateSource];
+    [weakSelf.tableView reloadData];
     
   }]];
   
@@ -92,6 +128,8 @@
   [self presentViewController:alertController animated:YES completion:nil];
   
 }
+
+//设置调试模式的参数
 -(void)gotoSetting{
   ConfigPlugIn * PlugInSet = [[ConfigPlugIn alloc] init];
   __weak typeof(self) weakSelf = self;
@@ -123,9 +161,11 @@
   UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cellId"];
   if (cell == nil) {
     cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellId"];
-    //      cell.backgroundColor = [UIColor whiteColor];
   }
-  cell.textLabel.text = self.dataSource[indexPath.row];
+  
+  PluginModel *model = self.dataSource[indexPath.row];
+  
+  cell.textLabel.text = model.moduleName;
   return cell;
 }
 
@@ -148,22 +188,20 @@
   if (self.OpenType == 0) {
     rootView = [self loadWithURL];
   }else if(self.OpenType == 1){
-    rootView = [self loadDetailBundle];
+    rootView = [self loadDetailBundleWithModel:self.dataSource[index]];
   }else if(self.OpenType == 2){
-    rootView = [self loadWithDocumentURL];
+    rootView = [self loadDocumentWithModel:self.dataSource[index]];
   }
   reactNavtiveVC.view = rootView;
-  
-  
   [self.navigationController pushViewController:reactNavtiveVC animated:YES];
 }
 
 //拼接包
--(RCTRootView *)loadDetailBundle
+-(RCTRootView *)loadDetailBundleWithModel:(PluginModel *)model
 {
   NSError *error = nil;
   //获取detail Bundle文件
-  NSData * detailBundleData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] URLForResource:@"business" withExtension:@"jsbundle"].path
+  NSData * detailBundleData = [NSData dataWithContentsOfFile:model.filePath
                                                      options:NSDataReadingMappedIfSafe
                                                        error:&error];
   if (!error && ![JSBridgeManager shareManager].isHaveLoadDetail) {
@@ -171,15 +209,18 @@
     [[JSBridgeManager shareManager].bridge.batchedBridge executeSourceCode:detailBundleData sync:NO];
     [JSBridgeManager shareManager].isHaveLoadDetail = YES;
   }
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[JSBridgeManager shareManager].bridge moduleName:@"SCDemo" initialProperties:nil];
+  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[JSBridgeManager shareManager].bridge moduleName:model.moduleName initialProperties:nil];
   return rootView;
 }
 
 
 //沙河拼接包
--(RCTRootView *)loadWithDocumentURL{
+-(RCTRootView *)loadDocumentWithModel:(PluginModel *)model{
   
-  NSString * path = [JSBridgeManager getPluginPathWithPluginName:@"SCDemo"];
+  
+  
+  
+  NSString * path = model.filePath;
   
   if (![self isExistsAtPath:path]) {
     return nil;
@@ -196,7 +237,7 @@
     [[JSBridgeManager shareManager].bridge.batchedBridge executeSourceCode:detailBundleData sync:NO];
     [JSBridgeManager shareManager].isHaveLoadDetail = YES;
   }
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[JSBridgeManager shareManager].bridge moduleName:@"SCDemo" initialProperties:nil];
+  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[JSBridgeManager shareManager].bridge moduleName:model.moduleName initialProperties:nil];
   return rootView;
   
 }
