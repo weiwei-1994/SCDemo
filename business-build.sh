@@ -13,17 +13,30 @@ downloadAndroidJson(){
 
 
 buildIos(){
+    outputPath="./bundles/business/ios/"
+    pathIsExist $outputPath
      
-    react-native bundle --platform ios --dev false --entry-file index.js --bundle-output bundles/business/ios/business.jsbundle  --assets-dest bundles/business/ios/  --config ./metro.business.config.js  --reset-cache
-    node ./compile/zip-compressing.js bundles/business/ios ios
+    react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ${outputPath}"business.jsbundle"  --assets-dest ${outputPath}  --config ./metro.business.config.js  --reset-cache
+    node ./compile/zip-compressing.js ${outputPath} ios
 }
 
 buildAndroid(){
+     outputPath="./bundles/business/android/"
+     pathIsExist $outputPath
      
-    react-native bundle --platform android --dev false --entry-file index.js --bundle-output bundles/business/android/business.jsbundle  --assets-dest bundles/business/android/  --config ./metro.business.config.js  --reset-cache
-    node ./compile/zip-compressing.js bundles/business/android android
+    react-native bundle --platform android --dev false --entry-file index.js --bundle-output ${outputPath}"business.jsbundle" --assets-dest ${outputPath}  --config ./metro.business.config.js  --reset-cache
+    node ./compile/zip-compressing.js ${outputPath} android
 }
 
+pathIsExist(){
+    if [ ! -d $1 ];then
+        mkdir -p $1
+        echo "自动创建文件目录"
+
+     else
+        echo "目录已经存在"
+     fi
+}
 
 
 echo '  请输入打包类型：iOS/android: '
