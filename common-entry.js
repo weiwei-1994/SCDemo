@@ -11,7 +11,8 @@ import "react-native-pager-view"
 import "react-native-safe-area-context"
 import "react-native-screens"
 import "react-native-tab-view"
-import "react-native-ww-plugin-sdk"
+import "react-native-ww-plugin-sdk/src/Component/WWInputComponent"
+import "react-native-ww-plugin-sdk/src/Until/ColorsUnti"
 
 // import "react-native-calendars"
 
