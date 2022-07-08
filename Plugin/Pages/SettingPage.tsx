@@ -7,8 +7,8 @@ import {
     Button
 } from 'react-native';
 import { Calendar } from 'react-native-calendars';
-import Input from 'react-native-ww-plugin-sdk/src/Component/WWInputComponent'
-
+import {Input,NavBar} from 'react-native-ww-plugin-sdk'
+ 
 const SettingPage = (props: any) => {
 
     return (
@@ -30,7 +30,11 @@ const SettingPage = (props: any) => {
             <Input
                 labelText = 'test'
                 placeHolder = 'placeHolder'
-                securityInput = {true}
+                securityInput = {false}
+            />
+            <NavBar 
+                style = {styles.navBar}
+                leftButtonText = '哈哈哈'
             />
         </View>
     );
@@ -46,6 +50,9 @@ const styles = StyleSheet.create({
         marginTop:20,
         width:100,
         height:100
+    },
+    navBar:{
+        width:200
     }
 });
 
