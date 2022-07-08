@@ -5793,10 +5793,10 @@ react-native-tab-view@^3.1.1:
   resolved "https://registry.npmjs.org/react-native-tab-view/-/react-native-tab-view-3.1.1.tgz"
   integrity sha512-M5pRN6utQfytKWoKlKVzg5NbkYu308qNoW1khGTtEOTs1k14p2dHJ/BWOJoJYHKbPVUyZldbG9MFT7gUl4YHnw==
 
-react-native-ww-plugin-sdk@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/react-native-ww-plugin-sdk/-/react-native-ww-plugin-sdk-0.0.8.tgz#8bdcad0138dd6c6b1cac7b08bff4345b413c701a"
-  integrity sha512-vyTxWxtzdViBSlVOg7tzwqcJmWKl0x8t/nwYJbmhP9MXtQfC8Rf0Dpf2vVMVuI7ZGS/fZWGsoq0gCjhWU4JxRA==
+react-native-ww-plugin-sdk@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/react-native-ww-plugin-sdk/-/react-native-ww-plugin-sdk-0.0.12.tgz#e7ceececf2739a7963851cf021bb05ddad9f14c0"
+  integrity sha512-d5vDUFqUxFIlwvalLITu7jW9yM7ieR36qCTzrDeGKEyLtz80fmAywZ8CNQ5KEGzoyFwM95rS8b0aJ+TEE6P6uA==
 
 react-native@0.69.0:
   version "0.69.0"
