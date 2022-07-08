@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
     StyleSheet,
-    Platform,
     View,
     Text,
     Image,
-    Button,
-    NativeModules
+    Button
 } from 'react-native';
 import { Calendar } from 'react-native-calendars';
+import Input from 'react-native-ww-plugin-sdk/src/Component/WWInputComponent'
 
 const SettingPage = (props: any) => {
 
@@ -27,6 +26,11 @@ const SettingPage = (props: any) => {
             <Image 
             style={styles.image}
             source={require('../Resource/star.png')}
+            />
+            <Input
+                labelText = 'test'
+                placeHolder = 'placeHolder'
+                securityInput = {true}
             />
         </View>
     );
