@@ -8,6 +8,9 @@
 
 #import "JSBridgeManager.h"
 
+#import "BridgeDelegate.h"
+
+
 @implementation JSBridgeManager
 +(instancetype)shareManager
 {
@@ -22,7 +25,12 @@
 -(void)startWithURL:(NSURL *)URl
 {
   self.isHaveLoadDetail = NO;
-  self.bridge = [[RCTBridge alloc] initWithBundleURL:URl moduleProvider:nil launchOptions:nil];
+  
+  BridgeDelegate * delegate = [[BridgeDelegate alloc] init];
+  delegate.url = URl;
+  
+  self.bridge = [[RCTBridge alloc] initWithDelegate:delegate launchOptions:nil];
+
 }
 
 +(NSString *)getMainBundlePath{

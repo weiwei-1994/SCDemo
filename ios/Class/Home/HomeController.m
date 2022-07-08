@@ -28,6 +28,9 @@
 @property(nonatomic,strong)UIButton* leftBt;
 
 
+@property(nonatomic,strong)NSURL * commonUrl;
+
+
 
 @end
 
@@ -36,7 +39,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  
+  [self addNotification];
   self.title = @"APP首页";
   [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]}];
   
@@ -60,6 +63,15 @@
 }
 
 
+-(void)addNotification{
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(JavaScriptDidLoad) name:RCTJavaScriptDidLoadNotification object:nil];
+}
+
+- (void)JavaScriptDidLoad
+{
+  
+}
+
 -(void)updateSource{
   
   if (self.OpenType == 0) {
@@ -73,7 +85,15 @@
     model0.moduleName = @"SCDemo";
     model0.filePath = [[NSBundle mainBundle] URLForResource:@"business" withExtension:@"jsbundle"].path;
     
-    self.dataSource = @[model0];
+    PluginModel * model1 = [[PluginModel alloc] init];
+    model1.moduleName = @"SPluginOne";
+    model1.filePath = [[NSBundle mainBundle] URLForResource:@"SPluginOne_business" withExtension:@"jsbundle"].path;
+    
+    PluginModel * model2 = [[PluginModel alloc] init];
+    model2.moduleName = @"SPluginTwo";
+    model2.filePath = [[NSBundle mainBundle] URLForResource:@"SPluginTwo_business" withExtension:@"jsbundle"].path;
+    
+    self.dataSource = @[model0,model1,model2];
     
   }else if(self.OpenType == 2){
     PluginModel * model0 = [[PluginModel alloc] init];
@@ -199,16 +219,21 @@
 //拼接包
 -(RCTRootView *)loadDetailBundleWithModel:(PluginModel *)model
 {
-  NSError *error = nil;
+//  NSError *error = nil;
   //获取detail Bundle文件
-  NSData * detailBundleData = [NSData dataWithContentsOfFile:model.filePath
-                                                     options:NSDataReadingMappedIfSafe
-                                                       error:&error];
-  if (!error && ![JSBridgeManager shareManager].isHaveLoadDetail) {
+//  NSData * detailBundleData = [NSData dataWithContentsOfFile:model.filePath
+//                                                     options:NSDataReadingMappedIfSafe
+//                                                       error:&error];
+//  if (!error && ![JSBridgeManager shareManager].isHaveLoadDetail) {
     //加载eDetailbundle
-    [[JSBridgeManager shareManager].bridge.batchedBridge executeSourceCode:detailBundleData sync:NO];
-    [JSBridgeManager shareManager].isHaveLoadDetail = YES;
-  }
+//    [[JSBridgeManager shareManager].bridge.batchedBridge executeSourceCode:detailBundleData sync:NO];
+    
+    [[JSBridgeManager shareManager].bridge loadAndExecuteSplitBundleURL:[NSURL URLWithString:model.filePath] onError:^(NSError *error) {
+    } onComplete:^{
+      NSLog(@"加载分包完成");
+    }];
+//    [JSBridgeManager shareManager].isHaveLoadDetail = YES;
+//  }
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[JSBridgeManager shareManager].bridge moduleName:model.moduleName initialProperties:nil];
   return rootView;
 }
@@ -227,16 +252,20 @@
   }
   NSLog(@"分包路径%@",path);
   
-  NSError *error = nil;
-  //获取detail Bundle文件
-  NSData * detailBundleData = [NSData dataWithContentsOfFile:path
-                                                     options:NSDataReadingMappedIfSafe
-                                                       error:&error];
-  if (!error && ![JSBridgeManager shareManager].isHaveLoadDetail) {
+//  NSError *error = nil;
+//  //获取detail Bundle文件
+//  NSData * detailBundleData = [NSData dataWithContentsOfFile:path
+//                                                     options:NSDataReadingMappedIfSafe
+//                                                       error:&error];
+//  if (!error && ![JSBridgeManager shareManager].isHaveLoadDetail) {
     //加载eDetailbundle
-    [[JSBridgeManager shareManager].bridge.batchedBridge executeSourceCode:detailBundleData sync:NO];
-    [JSBridgeManager shareManager].isHaveLoadDetail = YES;
-  }
+//    [[JSBridgeManager shareManager].bridge.batchedBridge executeSourceCode:detailBundleData sync:NO];
+    [[JSBridgeManager shareManager].bridge loadAndExecuteSplitBundleURL:[NSURL URLWithString:model.filePath] onError:^(NSError *error) {
+    } onComplete:^{
+      NSLog(@"加载分包完成");
+    }];
+//    [JSBridgeManager shareManager].isHaveLoadDetail = YES;
+//  }
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[JSBridgeManager shareManager].bridge moduleName:model.moduleName initialProperties:nil];
   return rootView;
   
