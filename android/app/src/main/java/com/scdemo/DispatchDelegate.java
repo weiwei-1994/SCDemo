@@ -108,7 +108,7 @@ public class DispatchDelegate extends ReactActivityDelegate {
             @Nullable
             @Override
             protected String getBundleAssetName() {
-                return "index.bundle";
+                return "index.android.bundle";
             }
 
             @Override

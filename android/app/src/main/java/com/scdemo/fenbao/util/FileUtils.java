@@ -33,7 +33,7 @@ public class FileUtils {
     public static final String PACKAGE_HASH_KEY = "md5";
     public static final String UNZIPPED_FOLDER_NAME = "unzipped";
     public static final String FOLDER_RN = "bundles";//目标目录
-    public static final String REACT_NATIVE_FILE = "index.bundle";
+    public static final String REACT_NATIVE_FILE = "index.android.bundle";
 
     public static final String STATUS_FILE = "code_rn.json";
 
