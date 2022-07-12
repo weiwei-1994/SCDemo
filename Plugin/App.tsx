@@ -15,7 +15,7 @@ import {
   Button,
   NativeModules
 } from 'react-native';
-import NativeView from './Component/NativeView'
+import {NavtiveView} from 'react-native-ww-plugin-sdk'
 
 const App = (props: any) => {
   const [count, setCount] = useState(1);
@@ -35,7 +35,7 @@ const App = (props: any) => {
           <Button
             title='调用安卓原生模块'
             onPress={() => callAndroidMoudle('调用安卓原生模块')} />
-          <NativeView
+          <NavtiveView
             style={styles.nativeView}
             titleText={count.toString()}
             onChangeMessage={(nativeEvent: any) => callAndroidMoudle(nativeEvent.message)}
