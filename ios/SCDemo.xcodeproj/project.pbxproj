@@ -15,7 +15,10 @@
 		3E858B4C2877D01D0088A3E0 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 3E858B4B2877D01D0088A3E0 /* assets */; };
 		7699B88040F8A987B510C191 /* libPods-SCDemo-SCDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-SCDemo-SCDemoTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		FB7A1560287597FE00404D03 /* common.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = FB7A155F287597FE00404D03 /* common.jsbundle */; };
+		FB156632287D4D8E0092F473 /* common.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = FB156631287D4D8E0092F473 /* common.jsbundle */; };
+		FB156635287D4DD40092F473 /* BridgeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB156634287D4DD40092F473 /* BridgeDelegate.m */; };
+		FB156638287D4F310092F473 /* SPluginOne_business.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = FB156636287D4F310092F473 /* SPluginOne_business.jsbundle */; };
+		FB156639287D4F310092F473 /* SPluginTwo_business.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = FB156637287D4F310092F473 /* SPluginTwo_business.jsbundle */; };
 		FBA010D5286C350F00095DA2 /* business.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = FBA010C1286C350F00095DA2 /* business.jsbundle */; };
 		FBACBA632873D8CB00685578 /* PluginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FBACBA622873D8CB00685578 /* PluginModel.m */; };
 		FBB27AA7286415760014AC21 /* JSBridgeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB27A88286415760014AC21 /* JSBridgeManager.m */; };
@@ -57,7 +60,11 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SCDemo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-SCDemo-SCDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCDemo-SCDemoTests.release.xcconfig"; path = "Target Support Files/Pods-SCDemo-SCDemoTests/Pods-SCDemo-SCDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		FB7A155F287597FE00404D03 /* common.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = common.jsbundle; path = ../../bundles/common/ios/common.jsbundle; sourceTree = "<group>"; };
+		FB156631287D4D8E0092F473 /* common.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = common.jsbundle; sourceTree = "<group>"; };
+		FB156633287D4DD40092F473 /* BridgeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeDelegate.h; sourceTree = "<group>"; };
+		FB156634287D4DD40092F473 /* BridgeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BridgeDelegate.m; sourceTree = "<group>"; };
+		FB156636287D4F310092F473 /* SPluginOne_business.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SPluginOne_business.jsbundle; sourceTree = "<group>"; };
+		FB156637287D4F310092F473 /* SPluginTwo_business.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SPluginTwo_business.jsbundle; sourceTree = "<group>"; };
 		FBA010C1286C350F00095DA2 /* business.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = business.jsbundle; sourceTree = "<group>"; };
 		FBACBA612873D8CB00685578 /* PluginModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PluginModel.h; sourceTree = "<group>"; };
 		FBACBA622873D8CB00685578 /* PluginModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PluginModel.m; sourceTree = "<group>"; };
@@ -188,6 +195,8 @@
 		FBA010C0286C350F00095DA2 /* PluginBundle */ = {
 			isa = PBXGroup;
 			children = (
+				FB156636287D4F310092F473 /* SPluginOne_business.jsbundle */,
+				FB156637287D4F310092F473 /* SPluginTwo_business.jsbundle */,
 				FBA010C1286C350F00095DA2 /* business.jsbundle */,
 			);
 			path = PluginBundle;
@@ -196,8 +205,8 @@
 		FBA010CD286C350F00095DA2 /* mainBundle */ = {
 			isa = PBXGroup;
 			children = (
+				FB156631287D4D8E0092F473 /* common.jsbundle */,
 				3E858B4B2877D01D0088A3E0 /* assets */,
-				FB7A155F287597FE00404D03 /* common.jsbundle */,
 			);
 			path = mainBundle;
 			sourceTree = "<group>";
@@ -205,9 +214,11 @@
 		FBB27A87286415760014AC21 /* Bridge */ = {
 			isa = PBXGroup;
 			children = (
+				FB156633287D4DD40092F473 /* BridgeDelegate.h */,
+				FB156634287D4DD40092F473 /* BridgeDelegate.m */,
+				FBB27A8A286415760014AC21 /* JSBridgeManager.h */,
 				FBB27A88286415760014AC21 /* JSBridgeManager.m */,
 				FBB27A89286415760014AC21 /* RCTBridge+LoadOtherJS.h */,
-				FBB27A8A286415760014AC21 /* JSBridgeManager.h */,
 				FBB27A8B286415760014AC21 /* RCTBridge+LoadOtherJS.m */,
 			);
 			path = Bridge;
@@ -352,11 +363,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB156639287D4F310092F473 /* SPluginTwo_business.jsbundle in Resources */,
+				FB156632287D4D8E0092F473 /* common.jsbundle in Resources */,
 				3E858B4C2877D01D0088A3E0 /* assets in Resources */,
+				FB156638287D4F310092F473 /* SPluginOne_business.jsbundle in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				FBA010D5286C350F00095DA2 /* business.jsbundle in Resources */,
-				FB7A1560287597FE00404D03 /* common.jsbundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +545,7 @@
 				FBB27AB0286415760014AC21 /* NativeModule.m in Sources */,
 				FBB27AAE286415760014AC21 /* RNNativeView.m in Sources */,
 				FBB27AA8286415760014AC21 /* RCTBridge+LoadOtherJS.m in Sources */,
+				FB156635287D4DD40092F473 /* BridgeDelegate.m in Sources */,
 				FBB27AB1286415760014AC21 /* ReactNativeController.m in Sources */,
 				FBB27AAF286415760014AC21 /* NativeNameController.m in Sources */,
 				FBB27AAC286415760014AC21 /* HomeController.m in Sources */,
