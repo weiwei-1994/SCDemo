@@ -7,7 +7,7 @@ buildIos(){
     # 打包到build文件
     outputPath="./bundles/common/ios/"
     pathIsExist $outputPath
-    react-native bundle --platform ios --dev false --entry-file  common-entry.js --bundle-output ${outputPath}"common.jsbundle" --assets-dest ${outputPath} --config ./metro.base.config.js --reset-cache
+    react-native bundle --platform ios --dev false --entry-file  common-entry.js --bundle-output ${outputPath}"common.jsbundle" --assets-dest ${outputPath} --config ./metro.common.config.js --reset-cache
     node ./compile/split-common.js ${outputPath}"common.jsbundle"
     node ./compile/zip-compressing.js ${outputPath} ios
 }
