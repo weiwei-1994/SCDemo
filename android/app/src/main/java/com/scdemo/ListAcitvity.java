@@ -69,7 +69,11 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                gotoNewActivity();
+                try {
+                    gotoNewActivity();
+                }catch (Exception e){
+                    Log.d("yangjie","exception------aaa---poweronException:::"+e.getMessage());
+                }
             }
         });
 
