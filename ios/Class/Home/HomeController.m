@@ -212,6 +212,9 @@
   }else if(self.OpenType == 2){
     rootView = [self loadDocumentWithModel:self.dataSource[index]];
   }
+  if (!rootView) {
+    return;
+  }
   reactNavtiveVC.view = rootView;
   [self.navigationController pushViewController:reactNavtiveVC animated:YES];
 }
