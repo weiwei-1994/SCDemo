@@ -6,7 +6,8 @@ import {
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import App from '../App';
+//import App from '../App';
+import Push from '../Push';
 import SeetingPage from '../Pages/SettingPage'
 
 const Stack = createNativeStackNavigator();
@@ -19,7 +20,7 @@ const Navigate = (props:any) => {
             <Stack.Navigator>
                 <Stack.Screen
                     name="Home"
-                    component={App}
+                    component={Push}
                     options={{
                         headerTitle: "插件首页",
                         headerLeft: (props) => {
