@@ -82,8 +82,8 @@
     
   }else if(self.OpenType == 1){
     PluginModel * model0 = [[PluginModel alloc] init];
-    model0.moduleName = @"SCDemo";
-    model0.filePath = [[NSBundle mainBundle] URLForResource:@"business" withExtension:@"jsbundle"].path;
+    model0.moduleName = @"HelloPlugin";
+    model0.filePath = [[NSBundle mainBundle] URLForResource:@"helloplugin-business" withExtension:@"jsbundle"].path;
     
     PluginModel * model1 = [[PluginModel alloc] init];
     model1.moduleName = @"SPluginOne";
