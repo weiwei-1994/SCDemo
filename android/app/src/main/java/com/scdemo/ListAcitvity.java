@@ -5,17 +5,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.packagerconnection.PackagerConnectionSettings;
 import com.scdemo.fenbao.demo.BussinessActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +41,8 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
     private EditText local;
     private Button btn_fenbao;
 
+    private TextView scan_code;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -45,6 +53,7 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
         local = findViewById(R.id.localhost);
         btn_fenbao = findViewById(R.id.btn_fenbao);
         titleList.add("打开插件");
+        scan_code = findViewById(R.id.scan_code);
         listAdapter = new ListAdapter(titleList,this);
         listView.setAdapter(listAdapter);
 
@@ -52,6 +61,14 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
 //        SharedPreferences.Editor editor = sharedPreferences.edit();
 //        editor.putString("debug_http_host",local.getText().toString());
 //        editor.commit();
+
+        scan_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                config();
+                openScan();
+            }
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -81,6 +98,46 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
 
 
 
+    }
+
+    /**
+     * 提高屏幕亮度
+     */
+    private void config() {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.screenBrightness = 1.0f;
+        getWindow().setAttributes(lp);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            String result = bundle.getString("result");
+            Log.d("yj","result-----result::"+result);
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                String pluginName = jsonObject.getString("name");
+                String ip = jsonObject.getString("ip");
+                Log.d("yj","result-----plugin::"+pluginName);
+                Log.d("yj","result-----ip::"+ip);
+                if(!TextUtils.isEmpty(pluginName)){
+                    et.setText(pluginName);
+                }
+                if(!TextUtils.isEmpty(ip)){
+                    local.setText(ip+":8081");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private void openScan(){
+        startActivityForResult(new Intent(ListAcitvity.this,
+                CaptureActivity.class), 0);
     }
 
     private void openFenBao ( ) {

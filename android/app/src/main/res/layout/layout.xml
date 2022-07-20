@@ -4,14 +4,27 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_title"
-        android:gravity="center_horizontal"
         android:textSize="22sp"
         android:layout_marginTop="30dp"/>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="扫描二维码"
+        android:textSize="22sp"
+        android:id="@+id/scan_code"
+        android:layout_marginTop="30dp"
+        android:gravity="right"
+        android:layout_marginRight="10dp"/>
+    </LinearLayout>
     <Button
         android:id="@+id/btn_fenbao"
         android:layout_width="match_parent"
