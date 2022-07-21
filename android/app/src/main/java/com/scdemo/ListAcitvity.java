@@ -1,12 +1,18 @@
 package com.scdemo;
 
+import static com.scdemo.MainApplication.getContext;
+
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -15,6 +21,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.packagerconnection.PackagerConnectionSettings;
@@ -43,6 +53,11 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
 
     private TextView scan_code;
 
+    String[] permissions = new String[]{
+            Manifest.permission.CAMERA,
+            Manifest.permission.VIBRATE
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -65,8 +80,7 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
         scan_code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                config();
-                openScan();
+                checkPermissions();
             }
         });
 
@@ -98,6 +112,26 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
 
 
 
+    }
+
+    //点击按钮，访问如下方法
+    private void checkPermissions(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int i = ContextCompat.checkSelfPermission(getContext(), permissions[0]);
+            int l = ContextCompat.checkSelfPermission(getContext(), permissions[1]);
+            // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
+            if (i != PackageManager.PERMISSION_GRANTED ||
+                    l != PackageManager.PERMISSION_GRANTED ) {
+                // 如果没有授予该权限，就去提示用户请求
+                startRequestPermission();
+            }else{
+                config();
+                openScan();
+            }
+        }
+    }
+    private void startRequestPermission() {
+        ActivityCompat.requestPermissions(ListAcitvity.this, permissions, 321);
     }
 
     /**
@@ -132,6 +166,25 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
                 e.printStackTrace();
             }
 
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 321) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    //如果没有获取权限，那么可以提示用户去设置界面--->应用权限开启权限
+                    Toast toast = Toast.makeText(this, "设置界面获取权限", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                } else {
+                    //获取权限成功,跳转
+                    config();
+                    openScan();
+                }
+            }
         }
     }
 
