@@ -6,40 +6,44 @@
 
  import React, { Component } from 'react';
  import {
-   Platform,
-   StyleSheet,
-   Text,
-   View
- } from 'react-native';
+  StyleSheet,
+  Platform,
+  View,
+  Text,
+  Button,
+  NativeModules
+} from 'react-native';
  
+import { requireNativeComponent } from 'react-native';
  import CodePush from "react-native-code-push"; //引入code-push
 
- import RnTestExceptionHandler from 'rn-test-exception-handler';
- import { setJSExceptionHandler, setNativeExceptionHandler } from 'react-native-exception-handler';
+ //import RnTestExceptionHandler from 'rn-test-exception-handler';
+ //import { setJSExceptionHandler, setNativeExceptionHandler } from 'react-native-exception-handler';
+// import NativeView from './Component/NativeView'
 
- const errorHandler = (e, isFatal) => {
-  if (isFatal) {
-    Alert.alert(
-        'Unexpected error occurred',
-        `
-        Error: ${(isFatal) ? 'Fatal:' : ''} ${e.name} ${e.message}
+//  const errorHandler = (e, isFatal) => {
+//   if (isFatal) {
+//     Alert.alert(
+//         'Unexpected error occurred',
+//         `
+//         Error: ${(isFatal) ? 'Fatal:' : ''} ${e.name} ${e.message}
 
-        We have reported this to our team ! Please close the app and start again!
-        `,
-      [{
-        text: 'Close'
-      }]
-    );
-  } else {
-    console.log(e); // So that we can see it in the ADB logs in case of Android if needed
-  }
-};
+//         We have reported this to our team ! Please close the app and start again!
+//         `,
+//       [{
+//         text: 'Close'
+//       }]
+//     );
+//   } else {
+//     console.log(e); // So that we can see it in the ADB logs in case of Android if needed
+//   }
+// };
 
-setJSExceptionHandler(errorHandler, true);
+//setJSExceptionHandler(errorHandler, true);
 
-setNativeExceptionHandler((errorString) => {
-    console.log('setNativeExceptionHandler');
-});
+// setNativeExceptionHandler((errorString) => {
+//     console.log('setNativeExceptionHandler');
+// });
  
  let codePushOptions = {
    //设置检查更新的频率
@@ -57,12 +61,23 @@ setNativeExceptionHandler((errorString) => {
  });
  
  type Props = {};
- 
+
  class Push extends Component<Props> {
  
+
+  constructor(props) {
+    super(props);
+    this._onChange = this._onChange.bind(this);
+  }
+  _onChange(event: Event) {
+    if (!this.props.onChangeMessage) {
+      return;
+    }
+    this.props.onChangeMessage(event.nativeEvent.message);
+  }
    //如果有更新的提示
    syncImmediate() {
-     CodePushs.sync( {
+     CodePush.sync( {
            //安装模式
            //ON_NEXT_RESUME 下次恢复到前台时
            //ON_NEXT_RESTART 下一次重启时
@@ -91,6 +106,7 @@ setNativeExceptionHandler((errorString) => {
          } ,
      );
    }
+
 
    causeJSError = ()=>{
     throw new Error('THIS IS A CUSTOM UNHANDLED JS ERROR');
@@ -124,11 +140,15 @@ setNativeExceptionHandler((errorString) => {
          <Text style={styles.instructions}>
             这是最新版本，恭喜！恭喜！
          </Text>
+         <RCTCustomView style={styles.nativeView}
+        {...this.props}
+        onChange={this._onChange}
+        />
        </View>
      );
    }
  }
- 
+ const RCTCustomView = requireNativeComponent(`RCTCustomView`);
  //这一行是必须的
  Push = CodePush(codePushOptions)(Push);
  export default Push;
@@ -150,4 +170,9 @@ setNativeExceptionHandler((errorString) => {
      color: '#333333',
      marginBottom: 5,
    },
+   nativeView: {
+    width: 100,
+    height: 100,
+    marginTop: 50
+  }
  });

@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
+import com.facebook.react.bridge.NativeModuleCallExceptionHandler;
 import com.masteratul.exceptionhandler.NativeExceptionHandlerIfc;
 import com.masteratul.exceptionhandler.ReactNativeExceptionHandlerModule;
 
@@ -25,14 +26,8 @@ public class RnActivity extends ReactActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mReceiver = new FinishActivityReceiver();
-//        ReactNativeExceptionHandlerModule.setNativeExceptionHandler(new NativeExceptionHandlerIfc() {
-//            @Override
-//            public void handleNativeException(Thread thread, Throwable throwable, Thread.UncaughtExceptionHandler originalHandler) {
-//                // Put your error handling code here
-//                Log.d("yangjie","exception------aaa---");
-//            }
-//        });//This will override the default behaviour of displaying the recover activity.
-        ReactNativeExceptionHandlerModule.replaceErrorScreenActivityClass(RnActivity.class); //This will replace the native error handler popup with your own custom activity.
+
+        //ReactNativeExceptionHandlerModule.replaceErrorScreenActivityClass(RnActivity.class); //This will replace the native error handler popup with your own custom activity.
 
     }
 

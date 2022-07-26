@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 
 import com.facebook.drawee.backends.pipeline.PipelineDraweeControllerBuilder;
 import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.NativeModuleCallExceptionHandler;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
@@ -31,20 +32,26 @@ public class MyCustomView extends View {
 
     private String text="text";
 
+    private ReactContext reactContext;
+
     public MyCustomView(ThemedReactContext reactContext, PipelineDraweeControllerBuilder pipelineDraweeControllerBuilder, Object o, Context context) {
         super(context);
+        this.reactContext = reactContext;
     }
 
     public MyCustomView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        this.reactContext = reactContext;
     }
 
     public MyCustomView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.reactContext = reactContext;
     }
 
     public MyCustomView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        this.reactContext = reactContext;
     }
 
     public void setText(String jsString) {
@@ -97,6 +104,12 @@ public class MyCustomView extends View {
 
             canvas.drawLine(startX, startY, stopX, stopY, paint);
         }
+        reactContext.setNativeModuleCallExceptionHandler(new NativeModuleCallExceptionHandler() {
+            @Override
+            public void handleException(Exception e) {
+                Log.d("yangjie","exception------bbbbbtttt---create::"+e.getMessage());
+            }
+        });
     }
 
     @Override
