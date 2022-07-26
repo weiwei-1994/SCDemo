@@ -4,7 +4,7 @@ const md5 = require('js-md5');
 const buildType = process.argv[4];
 const {name: appName} = require('../app.json');
 const commonModulesFileName = `${__dirname}/common-modules-${buildType}.json`;
-const commonModulesIndexMapFileName = `${__dirname}/common-modules-index-map-${buildType}.json`;
+// const commonModulesIndexMapFileName = `${__dirname}/common-modules-index-map-${buildType}.json`;
 const pathM = require('path');
 const pathSep = pathM.sep;
 const base = process.cwd();
@@ -15,10 +15,10 @@ const commonIOS = require(`${base}/compile/common-modules-ios.json`);
 const commonModules = buildType === 'ios' ? commonIOS : commonAndroid;
 
 // 使用数字作为id
-const commonModulesIndexMap =
-  buildType === 'ios'
-    ? require(`${base}/compile/common-modules-index-map-ios.json`)
-    : require(`${base}/compile/common-modules-index-map-android.json`);
+// const commonModulesIndexMap =
+//   buildType === 'ios'
+//     ? require(`${base}/compile/common-modules-index-map-ios.json`)
+//     : require(`${base}/compile/common-modules-index-map-android.json`);
 // 针对id使用数字，随机生成
 const randomNum = +`${+new Date()}`.slice(-9);
 // 是否使用index作为表示
@@ -26,7 +26,7 @@ const moduleIdByIndex = false;
 
 function clearFileInfo() {
   if (moduleIdByIndex) {
-    fs.writeFileSync(commonModulesIndexMapFileName, '{}');
+    // fs.writeFileSync(commonModulesIndexMapFileName, '{}');
 
   } else {
     fs.writeFileSync(commonModulesFileName, '[]');
@@ -44,18 +44,18 @@ function createModuleIdFactory() {
       return name;
     }
     // 公共包的Id
-    const relPath = pathM.relative(base, path);
-    if (commonModulesIndexMap[relPath]) {
-      return commonModulesIndexMap[relPath];
-    }
-    // 业务包的Id
-    let id = fileToIdMap.get(path);
-    if (typeof id !== 'number') {
-      id = nextId + 1;
-      nextId = nextId + 1;
-      fileToIdMap.set(path, id);
-    }
-    return id;
+    // const relPath = pathM.relative(base, path);
+    // if (commonModulesIndexMap[relPath]) {
+    //   return commonModulesIndexMap[relPath];
+    // }
+    // // 业务包的Id
+    // let id = fileToIdMap.get(path);
+    // if (typeof id !== 'number') {
+    //   id = nextId + 1;
+    //   nextId = nextId + 1;
+    //   fileToIdMap.set(path, id);
+    // }
+    // return id;
   };
 }
 
@@ -77,12 +77,13 @@ function processModuleFilter() {
       if (commonModules.includes(relPath)) {
         return false;
       }
-    } else {
-      // 使用id的情况
-      if (commonModulesIndexMap[relPath]) {
-        return false;
-      }
-    }
+    } 
+    // else {
+    //   // 使用id的情况
+    //   if (commonModulesIndexMap[relPath]) {
+    //     return false;
+    //   }
+    // }
 
     return true;
   };
@@ -107,23 +108,23 @@ function createCommonModuleIdFactory() {
       }
       return name;
     }
-    let id = fileToIdMap.get(path);
+    // let id = fileToIdMap.get(path);
 
-    if (typeof id !== 'number') {
-      id = nextId + 1;
-      nextId = nextId + 1;
-      fileToIdMap.set(path, id);
-      const relPath = pathM.relative(base, path);
-      if (!commonModulesIndexMap[relPath]) {
-        // 记录路径和id的关系
-        commonModulesIndexMap[relPath] = id;
-        fs.writeFileSync(
-          commonModulesIndexMapFileName,
-          JSON.stringify(commonModulesIndexMap),
-        );
-      }
-    }
-    return id;
+    // if (typeof id !== 'number') {
+    //   id = nextId + 1;
+    //   nextId = nextId + 1;
+    //   fileToIdMap.set(path, id);
+    //   const relPath = pathM.relative(base, path);
+    //   if (!commonModulesIndexMap[relPath]) {
+    //     // 记录路径和id的关系
+    //     commonModulesIndexMap[relPath] = id;
+    //     fs.writeFileSync(
+    //       // commonModulesIndexMapFileName,
+    //       JSON.stringify(commonModulesIndexMap),
+    //     );
+    //   }
+    // }
+    // return id;
   };
 }
 

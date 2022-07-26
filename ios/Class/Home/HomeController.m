@@ -43,12 +43,6 @@
   self.title = @"APP首页";
   [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]}];
   
-  UIButton * rightBt = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-  [rightBt setTitle:@"设置" forState:UIControlStateNormal];
-  [rightBt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  [rightBt addTarget:self action:@selector(gotoSetting) forControlEvents:UIControlEventTouchUpInside];
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBt];
-  
   UIButton * leftBt = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 150, 50)];
   [leftBt setTitle:@"服务调试模式" forState:UIControlStateNormal];
   [leftBt setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -82,8 +76,8 @@
     
   }else if(self.OpenType == 1){
     PluginModel * model0 = [[PluginModel alloc] init];
-    model0.moduleName = @"SCDemo";
-    model0.filePath = [[NSBundle mainBundle] URLForResource:@"business" withExtension:@"jsbundle"].path;
+    model0.moduleName = @"HelloPlugin";
+    model0.filePath = [[NSBundle mainBundle] URLForResource:@"helloplugin-business" withExtension:@"jsbundle"].path;
     
     PluginModel * model1 = [[PluginModel alloc] init];
     model1.moduleName = @"SPluginOne";
@@ -113,6 +107,7 @@
   [alertController addAction:[UIAlertAction actionWithTitle:@"服务调试模式" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     weakSelf.OpenType = 0;
     [weakSelf.leftBt setTitle:@"服务调试模式" forState:UIControlStateNormal];
+    [weakSelf gotoSetting];
     [weakSelf updateSource];
     [weakSelf.tableView reloadData];
   }]];
@@ -283,7 +278,7 @@
   
   NSURL *jsCodeLocation;
 #if DEBUG
-  NSString * url = [NSString stringWithFormat:@"http://%@:8081/index.bundle?platform=ios",self.localHost];
+  NSString * url = [NSString stringWithFormat:@"http://%@/index.bundle?platform=ios",self.localHost];
   
   jsCodeLocation = [NSURL URLWithString:url];
 #else
