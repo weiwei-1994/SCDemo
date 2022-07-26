@@ -46,43 +46,6 @@ public class DispatchDelegate extends ReactActivityDelegate {
                 return BuildConfig.DEBUG;
             }
 
-            @Override
-            protected ReactInstanceManager createReactInstanceManager() {
-                builder = ReactInstanceManager.builder()
-                        .setApplication(this.getApplication())
-                        .setJSMainModulePath(getJSMainModuleName())
-                        .setUseDeveloperSupport(getUseDeveloperSupport())
-                        .setRedBoxHandler(getRedBoxHandler())
-                        .setUIImplementationProvider(getUIImplementationProvider())
-                        .setInitialLifecycleState(LifecycleState.BEFORE_CREATE)
-                        .setNativeModuleCallExceptionHandler(new NativeModuleCallExceptionHandler(){
-
-                            @Override
-                            public void handleException(Exception e) {
-                                Log.d("yangjie","exception------aaa---create::"+e.getMessage());
-
-                                //codePush.setNeedToReportRollback(false);
-                                //RollBack.setNeedtoRollBack(true);
-                                RollBack.setRollBack();
-                                //getReactInstanceManager().getDevSupportManager().handleReloadJS();
-                                Intent in = new Intent();
-                                in.setAction(reStartName);
-                                MainApplication.getContext().sendBroadcast(in);
-                            }
-                        });
-
-                for (ReactPackage reactPackage : getPackages()) {
-                    builder.addPackage(reactPackage);
-                }
-
-                String jsBundleFile = getJSBundleFile();
-                if (jsBundleFile != null) {
-                    builder.setJSBundleFile(jsBundleFile);
-                } else {
-                    builder.setBundleAssetName(Assertions.assertNotNull(getBundleAssetName()));
-                }
-                return builder.build();
-            }
 
             //注册原生模块，这样
             @Override

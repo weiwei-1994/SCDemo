@@ -10,6 +10,8 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.masteratul.exceptionhandler.ReactNativeExceptionHandlerPackage;
+import com.microsoft.codepush.react.CodePush;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,33 +20,36 @@ import androidx.annotation.Nullable;
 
 public class MainApplication extends Application{
 
-//  private final ReactNativeHost reactNativeHost = new ReactNativeHost(this) {
-//    @Override
-//    public boolean getUseDeveloperSupport ( ) {
-//      return false;
-//    }
-//
-//    @Override
-//    protected List <ReactPackage> getPackages ( ) {
+  private final ReactNativeHost reactNativeHost = new ReactNativeHost(this) {
+    @Override
+    public boolean getUseDeveloperSupport ( ) {
+      return false;
+    }
+
+    @Override
+    protected List <ReactPackage> getPackages ( ) {
 //      List<ReactPackage> packages = new PackageList(this).getPackages();
 //      packages.add(new MyPackages());
-////                return Arrays.<ReactPackage>asList(
-////                        new MainReactPackage()
-////                );
+                return Arrays.<ReactPackage>asList(
+                        new MainReactPackage(),
+                        new MyPackages(),
+                        new CodePush(BuildConfig.CODEPUSH_KEY,MainApplication.getContext(),BuildConfig.DEBUG),
+                        new ReactNativeExceptionHandlerPackage()
+                );
 //      return packages;
-//    }
-//
-//    @Nullable
-//    @Override
-//    protected String getBundleAssetName ( ) {
-//      return "basic.jsbundle";
-//    }
-//
-//    @Override
-//    protected String getJSMainModuleName ( ) {
-//      return "index";
-//    }
-//  };
+    }
+
+    @Nullable
+    @Override
+    protected String getBundleAssetName ( ) {
+      return "basic.jsbundle";
+    }
+
+    @Override
+    protected String getJSMainModuleName ( ) {
+      return "index";
+    }
+  };
 
   private static Context context;
   @Override
@@ -63,8 +68,8 @@ public class MainApplication extends Application{
   }
 
 
-//  @Override
-//  public ReactNativeHost getReactNativeHost ( ) {
-//    return reactNativeHost;
-//  }
+  @Override
+  public ReactNativeHost getReactNativeHost ( ) {
+    return reactNativeHost;
+  }
 }
