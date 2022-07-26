@@ -80,12 +80,6 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
 
         btn_fenbao.setOnClickListener(v -> openFenBao());
 
-
-
-
-
-
-
     }
 
     private void openFenBao ( ) {
