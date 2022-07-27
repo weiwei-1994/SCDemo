@@ -13,8 +13,6 @@
  } from 'react-native';
  
  import CodePush from "react-native-code-push"; //引入code-push
-
- import RnTestExceptionHandler from 'rn-test-exception-handler';
  import { setJSExceptionHandler, setNativeExceptionHandler } from 'react-native-exception-handler';
 
  const errorHandler = (e, isFatal) => {

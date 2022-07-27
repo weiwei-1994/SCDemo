@@ -19,14 +19,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
+import com.facebook.react.ReactApplication;
+import com.facebook.react.ReactInstanceEventListener;
+import com.facebook.react.ReactInstanceManager;
+import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.packagerconnection.PackagerConnectionSettings;
 import com.scdemo.fenbao.demo.BussinessActivity;
+import com.scdemo.viewutils.BottomDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHandler {
+public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHandler, ReactInstanceEventListener {
 
 
 
@@ -35,11 +40,9 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
     private List<String> titleList = new ArrayList<>();
 
     private ListAdapter listAdapter;
-
-    private EditText et;
-
-    private EditText local;
-    private Button btn_fenbao;
+    private BottomDialog bottomDialog;
+    private boolean isBundle;
+    private boolean isLoaded;
 
     private static String[] PERMISSIONS_STORAGE = {
         "android.permission.READ_EXTERNAL_STORAGE",
@@ -52,60 +55,75 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
         setContentView(R.layout.layout);
         Log.d("YJSSDF","isDebug---"+isDebug(this));
         listView = findViewById(R.id.recycleView_id);
-        et = findViewById(R.id.et);
-        local = findViewById(R.id.localhost);
-        et.setVisibility(View.GONE);
-        local.setVisibility(View.GONE);
-        btn_fenbao = findViewById(R.id.btn_fenbao);
-        titleList.add("打开插件");
+        titleList.add("调试app");
         listAdapter = new ListAdapter(titleList,this);
         listView.setAdapter(listAdapter);
         verifyStoragePermissions(ListAcitvity.this);
-//        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_DEBUG_SERVER_HOST_KEY, Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.putString("debug_http_host",local.getText().toString());
-//        editor.commit();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                try {
-                    gotoNewActivity();
-                }catch (Exception e){
-                    Log.d("yangjie","exception------aaa---poweronException:::"+e.getMessage());
-                }
+                bottomDialog = new BottomDialog(ListAcitvity.this);
+                bottomDialog.setOnListener(new BottomDialog.OnHintDialogListener() {
+                    @Override
+                    public void onClickServer() {
+                        gotoServerActivity();
+                    }
+
+                    @Override
+                    public void onClickBundle() {
+                        isBundle = true;
+                        if(isLoaded){
+                            openFenBao("asset");
+                        }else {
+                            loadCommonAssets();
+                        }
+                    }
+
+                    @Override
+                    public void onClickFile() {
+                        isBundle = false;
+                        if(isLoaded){
+                            openFenBao("file");
+                        }else {
+                            loadCommonAssets();
+                        }
+                    }
+
+                    @Override
+                    public void onClickCancel() {
+                        bottomDialog.dismiss();
+                    }
+                });
+                bottomDialog.show();
             }
         });
 
-
-        btn_fenbao.setOnClickListener(v -> openFenBao());
-
-
-
-
-
-
-
     }
 
-    private void openFenBao ( ) {
+    private void loadCommonAssets(){
+        ReactInstanceManager reactInstanceManager = ((ReactApplication)getApplication()).getReactNativeHost().getReactInstanceManager();
+
+        //监听加载结束的回调
+        reactInstanceManager.addReactInstanceEventListener(ListAcitvity.this);
+
+        if (!reactInstanceManager.hasStartedCreatingInitialContext()){
+            reactInstanceManager.createReactContextInBackground();
+        }
+        isLoaded = true;
+    }
+
+
+    private void openFenBao (String scriptType) {
+        Intent in = new Intent();
+        in.setClass(ListAcitvity.this, BussinessActivity.class);
+        Constance.SCRIPTTYPE = scriptType;
         startActivity(new Intent(ListAcitvity.this, BussinessActivity.class));
     }
 
-    public void gotoNewActivity(){
+    public void gotoServerActivity(){
         Intent in = new Intent();
-        in.setClass(ListAcitvity.this, RnActivity.class);
-        RnActivity.bundleName = "SCDemo";
-//                RnActivity.bundleName = et.getText().toString();
-//                if(et.getText().toString().length()==0||et.getText().toString().equals("")){
-//                    Toast.makeText(ListAcitvity.this,"请输入插件名称",Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if(local.getText().toString().length()==0||local.getText().toString().equals("")){
-//                    Toast.makeText(ListAcitvity.this,"请输入IP:端口调试",Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                new PackagerConnectionSettings(getApplicationContext()).setDebugServerHost(local.getText().toString());
+        in.setClass(ListAcitvity.this, ServerActivity.class);
         startActivity(in);
     }
 
@@ -148,5 +166,13 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
         boolean isDebug = context.getApplicationInfo()!=null&&
                 (context.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE)!=0;
         return isDebug;
+    }
+
+    @Override
+    public void onReactContextInitialized(ReactContext reactContext) {
+        if(isBundle)
+            openFenBao("asset");
+        else
+            openFenBao("file");
     }
 }

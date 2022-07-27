@@ -11,6 +11,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
@@ -85,27 +86,36 @@ public abstract class AsyncReactActivity extends androidx.fragment.app.FragmentA
             manager.addReactInstanceEventListener(new ReactInstanceManager.ReactInstanceEventListener() {
                 @Override
                 public void onReactContextInitialized(ReactContext context) {
-                    loadScript(new LoadScriptListener() {
-                        @Override
-                        public void onLoadComplete(boolean success,String scriptPath) {
-                            bundleLoaded = success;
-                            if(success)
-                                runApp(scriptPath);
-                        }
-                    });
+                    try {
+                        loadScript(new LoadScriptListener() {
+                            @Override
+                            public void onLoadComplete(boolean success, String scriptPath) {
+                                bundleLoaded = success;
+                                if (success)
+                                    runApp(scriptPath);
+                            }
+                        });
+                    }catch (Exception e){
+                        Log.e("yj","exception-----xxx---"+e.getMessage());
+                    }
+
                     manager.removeReactInstanceEventListener(this);
                 }
             });
             manager.createReactContextInBackground();
         }else{
-            loadScript(new LoadScriptListener() {
-                @Override
-                public void onLoadComplete(boolean success,String scriptPath) {
-                    bundleLoaded = success;
-                    if(success)
-                        runApp(scriptPath);
-                }
-            });
+            try {
+                loadScript(new LoadScriptListener() {
+                    @Override
+                    public void onLoadComplete(boolean success, String scriptPath) {
+                        bundleLoaded = success;
+                        if (success)
+                            runApp(scriptPath);
+                    }
+                });
+            }catch (Exception e){
+                Log.e("yj","exception-----xxx--2-"+e.getMessage());
+            }
         }
     }
 

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/dialog_title"
+        android:textSize="14sp"
+        android:text="@string/dialog_bottom_title"
+        android:textColor="@color/dialog_title_text"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dialog_line"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/dialog_text_service"
+        android:textSize="22sp"
+        android:text="@string/dialog_bottom_service"
+        android:textColor="@color/dialog_text"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dialog_line"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/dialog_text_bundle"
+        android:textSize="22sp"
+        android:text="@string/dialog_bottom_bundle"
+        android:textColor="@color/dialog_text"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dialog_line"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/dialog_text_file"
+        android:textSize="22sp"
+        android:text="@string/dialog_bottom_file"
+        android:textColor="@color/dialog_text"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dialog_line"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/dialog_text_cancel"
+        android:textSize="22sp"
+        android:text="@string/dialog_bottom_cancel"
+        android:textColor="@color/dialog_cacnel_text"
+        android:gravity="center"/>
+</LinearLayout>

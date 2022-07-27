@@ -2,23 +2,23 @@ package com.scdemo;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
-import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.masteratul.exceptionhandler.NativeExceptionHandlerIfc;
+import com.masteratul.exceptionhandler.ReactNativeExceptionHandlerModule;
 import com.masteratul.exceptionhandler.ReactNativeExceptionHandlerPackage;
-import com.microsoft.codepush.react.CodePush;
 
 import java.util.Arrays;
 import java.util.List;
 
 import androidx.annotation.Nullable;
 
-public class MainApplication extends Application{
+public class MainApplication extends Application implements ReactApplication{
 
   private final ReactNativeHost reactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -33,7 +33,6 @@ public class MainApplication extends Application{
                 return Arrays.<ReactPackage>asList(
                         new MainReactPackage(),
                         new MyPackages(),
-                        new CodePush(BuildConfig.CODEPUSH_KEY,MainApplication.getContext(),BuildConfig.DEBUG),
                         new ReactNativeExceptionHandlerPackage()
                 );
 //      return packages;
@@ -43,6 +42,13 @@ public class MainApplication extends Application{
     @Override
     protected String getBundleAssetName ( ) {
       return "basic.jsbundle";
+    }
+
+    @Nullable
+    @Override
+    protected String getJSBundleFile() {
+      Log.d("yj","files----"+getApplicationContext().getFilesDir().getAbsolutePath() + "/bundle" +"/basices.bundle");
+      return getApplicationContext().getFilesDir().getAbsolutePath()+"/bundle/basices.jsbundle";
     }
 
     @Override
@@ -59,6 +65,15 @@ public class MainApplication extends Application{
     //ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
     SoLoader.init(this, /* native exopackage */ false);
     context = getApplicationContext();
+    ReactNativeExceptionHandlerModule.setNativeExceptionHandler(new NativeExceptionHandlerIfc() {
+      @Override
+      public void handleNativeException(Thread thread, Throwable throwable, Thread.UncaughtExceptionHandler originalHandler) {
+        // Put your error handling code here
+        Log.d("yj","exception----e--thread id--"+thread.getId()+":::"+thread.getName());
+        Log.d("yj","exception----e--throwable--"+throwable.getMessage());
+        originalHandler.uncaughtException(thread,throwable);
+      }
+    });//This will override the default behaviour of displaying the recover activity.
   }
 
   /**
