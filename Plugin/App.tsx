@@ -7,6 +7,9 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import {setJSExceptionHandler, setNativeExceptionHandler} from 'react-native-exception-handler';
+import {Alert} from 'react-native';
+import RNRestart from 'react-native-restart';
 import {
   StyleSheet,
   Platform,
@@ -28,6 +31,39 @@ const App = (props: any) => {
       androidNativeMoudle.show(message, 0);
     }
   }
+
+  const errorHandler = (e, isFatal) => {
+    if (isFatal) {
+      Alert.alert(
+          'Unexpected error occurred',
+          `
+          Error: ${(isFatal) ? 'Fatal:' : ''} ${e.name} ${e.message}
+  
+          We will need to restart the app.
+          `,
+        [{
+          text: 'Restart',
+          onPress: () => {
+            RNRestart.Restart();
+          }
+        }]
+      );
+    } else {
+      console.log(e+'-----js'); // So that we can see it in the ADB logs in case of Android if needed
+    }
+  };
+  
+  setJSExceptionHandler(errorHandler);
+  setNativeExceptionHandler((exceptionString) => {
+    // This is your custom global error handler
+    // You do stuff likehit google analytics to track crashes.
+    // or hit a custom api to inform the dev team.
+    //NOTE: alert or showing any UI change via JS
+    //WILL NOT WORK in case of NATIVE ERRORS.
+    console.log('-----错误');
+  });
+
+  
 
   const androidCompent = () => {
     if (Platform.OS == 'android') {
