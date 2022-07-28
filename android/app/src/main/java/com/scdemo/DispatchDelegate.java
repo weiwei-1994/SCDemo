@@ -18,6 +18,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.masteratul.exceptionhandler.ReactNativeExceptionHandlerPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.scdemo.utils.RollBack;
+import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,7 +57,11 @@ public class DispatchDelegate extends ReactActivityDelegate {
                         new MyPackages(),
                         new MainReactPackage(),
                         new CodePush(BuildConfig.CODEPUSH_KEY,MainApplication.getContext(),BuildConfig.DEBUG),
-                        new ReactNativeExceptionHandlerPackage()
+                        new ReactNativeExceptionHandlerPackage(),
+                        new com.swmansion.reanimated.ReanimatedPackage(),
+                        new RNGestureHandlerPackage(),
+                        new com.swmansion.rnscreens.RNScreensPackage(),
+                        new com.th3rdwave.safeareacontext.SafeAreaContextPackage()
                 );
 //                return packages;
             }
