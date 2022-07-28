@@ -18,7 +18,7 @@ import java.util.List;
 
 import androidx.annotation.Nullable;
 
-public class MainApplication extends Application{
+public class MainApplication extends Application implements ReactApplication{
 
   private final ReactNativeHost reactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -82,7 +82,7 @@ public class MainApplication extends Application{
     return context;
   }
 
-
+  @Override
   public ReactNativeHost getReactNativeHost ( ) {
     return reactNativeHost;
   }
