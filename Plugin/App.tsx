@@ -16,6 +16,7 @@ import {
   NativeModules
 } from 'react-native';
 import {NavtiveView} from 'react-native-ww-plugin-sdk'
+import './Exception/ExceptionHandler'
 
 const App = (props: any) => {
   const [count, setCount] = useState(1);
@@ -27,6 +28,7 @@ const App = (props: any) => {
       androidNativeMoudle.show(message, 0);
     }
   }
+
 
   const androidCompent = () => {
     if (Platform.OS == 'android') {

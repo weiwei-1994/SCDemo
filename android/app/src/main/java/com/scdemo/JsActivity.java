@@ -31,7 +31,7 @@ public class JsActivity extends Activity implements DefaultHardwareBackBtnHandle
         mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())
                 .setCurrentActivity(this)
-                .setBundleAssetName("index.android.bundle")
+                .setBundleAssetName("index.bundle")
                 .setJSMainModulePath("index")
                 .addPackages(packages)
                 .setUseDeveloperSupport(BuildConfig.DEBUG)

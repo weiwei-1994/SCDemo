@@ -2,4 +2,12 @@
     <string name="app_name">SCDemo</string>
     <string name="app_title">TestRN</string>
     <string name="app_item_text">打开插件</string>
+    // 在android/app/src/main/res/value/strings.xml中添加：
+    <string moduleConfig="true" name="CodePushDeploymentKey">TpIUxhYufjvZH4J8s_wxf1DPcQL3ilLfWncUY</string>
+<!--    <string moduleConfig="true" name="CodePushServerUrl">http://api.code-push.com/</string>-->
+    <string name="dialog_bottom_title">请选择加载资源</string>
+    <string name="dialog_bottom_service">服务调试模式</string>
+    <string name="dialog_bottom_bundle">本地bundle资源</string>
+    <string name="dialog_bottom_file">本地沙盒资源</string>
+    <string name="dialog_bottom_cancel">取消</string>
 </resources>
