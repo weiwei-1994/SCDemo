@@ -91,7 +91,7 @@ public class MainApplication extends Application implements ReactApplication {
     return context;
   }
 
-
+  @Override
   public ReactNativeHost getReactNativeHost ( ) {
     return reactNativeHost;
   }
