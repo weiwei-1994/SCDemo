@@ -19,6 +19,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		FB156632287D4D8E0092F473 /* common.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = FB156631287D4D8E0092F473 /* common.jsbundle */; };
 		FB156635287D4DD40092F473 /* BridgeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB156634287D4DD40092F473 /* BridgeDelegate.m */; };
+		FB93260B2892358F0061D437 /* scdemo-business.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = FB93260A2892358F0061D437 /* scdemo-business.jsbundle */; };
 		FBACBA632873D8CB00685578 /* PluginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FBACBA622873D8CB00685578 /* PluginModel.m */; };
 		FBB27AA7286415760014AC21 /* JSBridgeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB27A88286415760014AC21 /* JSBridgeManager.m */; };
 		FBB27AA8286415760014AC21 /* RCTBridge+LoadOtherJS.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB27A8B286415760014AC21 /* RCTBridge+LoadOtherJS.m */; };
@@ -65,6 +66,7 @@
 		FB156631287D4D8E0092F473 /* common.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = common.jsbundle; sourceTree = "<group>"; };
 		FB156633287D4DD40092F473 /* BridgeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeDelegate.h; sourceTree = "<group>"; };
 		FB156634287D4DD40092F473 /* BridgeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BridgeDelegate.m; sourceTree = "<group>"; };
+		FB93260A2892358F0061D437 /* scdemo-business.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "scdemo-business.jsbundle"; path = "../../bundles/business/ios_scdemo/scdemo-business.jsbundle"; sourceTree = "<group>"; };
 		FBACBA612873D8CB00685578 /* PluginModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PluginModel.h; sourceTree = "<group>"; };
 		FBACBA622873D8CB00685578 /* PluginModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PluginModel.m; sourceTree = "<group>"; };
 		FBB27A88286415760014AC21 /* JSBridgeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBridgeManager.m; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				3EC7AAA0288545D000FEDBA7 /* helloplugin-business.jsbundle */,
+				FB93260A2892358F0061D437 /* scdemo-business.jsbundle */,
 			);
 			path = PluginBundle;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB156632287D4D8E0092F473 /* common.jsbundle in Resources */,
+				FB93260B2892358F0061D437 /* scdemo-business.jsbundle in Resources */,
 				3EC7AAA1288545D000FEDBA7 /* helloplugin-business.jsbundle in Resources */,
 				3E858B4C2877D01D0088A3E0 /* assets in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
