@@ -20,6 +20,11 @@ RCT_EXPORT_METHOD(addEvent:(NSString *)param1 parma2:(NSString *)param2 callback
 
 RCT_EXPORT_METHOD(nativeStackPop){
   dispatch_async(dispatch_get_main_queue(), ^{
+    
+//    NSDictionary * dic = @{@"Q":@"q"};
+//    NSArray * arr = dic[@"Q"];
+//    NSLog(@"%@",arr[5]);
+    
     UINavigationController * nav = (UINavigationController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     [nav popViewControllerAnimated:YES];
   });

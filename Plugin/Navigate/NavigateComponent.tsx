@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import App from '../App';
-//import Push from '../Push';
+// import Push from '../Push';
 import SeetingPage from '../Pages/SettingPage'
 
 const Stack = createNativeStackNavigator();

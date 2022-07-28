@@ -76,7 +76,7 @@
     
   }else if(self.OpenType == 1){
     PluginModel * model0 = [[PluginModel alloc] init];
-    model0.moduleName = @"HelloPlugin";
+    model0.moduleName = @"HelloPlugin1";
     model0.filePath = [[NSBundle mainBundle] URLForResource:@"helloplugin-business" withExtension:@"jsbundle"].path;
     
     PluginModel * model1 = [[PluginModel alloc] init];
@@ -87,7 +87,12 @@
     model2.moduleName = @"SPluginTwo";
     model2.filePath = [[NSBundle mainBundle] URLForResource:@"SPluginTwo_business" withExtension:@"jsbundle"].path;
     
-    self.dataSource = @[model0,model1,model2];
+    
+    PluginModel * model3 = [[PluginModel alloc] init];
+    model3.moduleName = @"scdemo";
+    model3.filePath = [[NSBundle mainBundle] URLForResource:@"scdemo-business" withExtension:@"jsbundle"].path;
+    
+    self.dataSource = @[model0,model1,model2,model3];
     
   }else if(self.OpenType == 2){
     PluginModel * model0 = [[PluginModel alloc] init];
@@ -217,21 +222,33 @@
 //拼接包
 -(RCTRootView *)loadDetailBundleWithModel:(PluginModel *)model
 {
-//  NSError *error = nil;
+  
+  NSString * path = model.filePath;
+  
+  if (![self isExistsAtPath:path]) {
+    NSLog(@"路径不正确");
+    return nil;
+  }
+  NSError *error = nil;
   //获取detail Bundle文件
-//  NSData * detailBundleData = [NSData dataWithContentsOfFile:model.filePath
-//                                                     options:NSDataReadingMappedIfSafe
-//                                                       error:&error];
-//  if (!error && ![JSBridgeManager shareManager].isHaveLoadDetail) {
+  NSData * detailBundleData = [NSData dataWithContentsOfFile:model.filePath
+                                                     options:NSDataReadingMappedIfSafe
+                                                       error:&error];
+  if (!error) {
     //加载eDetailbundle
-//    [[JSBridgeManager shareManager].bridge.batchedBridge executeSourceCode:detailBundleData sync:NO];
-    
-    [[JSBridgeManager shareManager].bridge loadAndExecuteSplitBundleURL:[NSURL URLWithString:model.filePath] onError:^(NSError *error) {
-    } onComplete:^{
-      NSLog(@"加载分包完成");
-    }];
+    @try {
+      [[JSBridgeManager shareManager].bridge.batchedBridge executeSourceCode:detailBundleData sync:NO];
+    } @catch (NSException *exception) {
+      NSLog(@"%@",exception);
+    } @finally {
+      NSLog(@"拼接包完成");
+    }
+//    [[JSBridgeManager shareManager].bridge loadAndExecuteSplitBundleURL:[NSURL URLWithString:model.filePath] onError:^(NSError *error) {
+//    } onComplete:^{
+//      NSLog(@"加载分包完成");
+//    }];
 //    [JSBridgeManager shareManager].isHaveLoadDetail = YES;
-//  }
+  }
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[JSBridgeManager shareManager].bridge moduleName:model.moduleName initialProperties:nil];
   return rootView;
 }
@@ -277,15 +294,15 @@
   }
   
   NSURL *jsCodeLocation;
-#if DEBUG
+//#if DEBUG
   NSString * url = [NSString stringWithFormat:@"http://%@/index.bundle?platform=ios",self.localHost];
   
   jsCodeLocation = [NSURL URLWithString:url];
-#else
-  //    jsCodeLocation = [NSURL URLWithString:[self getPluginPathWithPluginId:@"12345"]];
-  
-  jsCodeLocation = [NSURL URLWithString:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"jsbundle"]];
-#endif
+//#else
+//  //    jsCodeLocation = [NSURL URLWithString:[self getPluginPathWithPluginId:@"12345"]];
+//
+//  jsCodeLocation = [NSURL URLWithString:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"jsbundle"]];
+//#endif
   //RNDemo RNHighScores
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL: jsCodeLocation
                                                       moduleName: self.moduleName
