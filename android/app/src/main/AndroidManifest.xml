@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动权限 -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 摄像头权限 -->
@@ -40,6 +42,7 @@
         <activity android:name=".JsActivity" />
         <activity android:name=".RnActivity" />
         <activity android:name=".CaptureActivity"/>
+        <activity android:name=".ServerActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

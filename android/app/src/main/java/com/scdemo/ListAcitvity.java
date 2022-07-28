@@ -25,10 +25,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 
+import com.facebook.react.ReactApplication;
+import com.facebook.react.ReactInstanceEventListener;
+import com.facebook.react.ReactInstanceManager;
+import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.packagerconnection.PackagerConnectionSettings;
 import com.scdemo.fenbao.demo.BussinessActivity;
+import com.scdemo.viewutils.BottomDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +43,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHandler {
+public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHandler, ReactInstanceEventListener {
 
 
 
@@ -45,18 +52,15 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
     private List<String> titleList = new ArrayList<>();
 
     private ListAdapter listAdapter;
+    private BottomDialog bottomDialog;
+    private boolean isBundle;
+    private boolean isLoaded;
 
-    private EditText et;
+    private static String[] PERMISSIONS_STORAGE = {
+        "android.permission.READ_EXTERNAL_STORAGE",
+                "android.permission.WRITE_EXTERNAL_STORAGE" };
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
 
-    private EditText local;
-    private Button btn_fenbao;
-
-    private TextView scan_code;
-
-    String[] permissions = new String[]{
-            Manifest.permission.CAMERA,
-            Manifest.permission.VIBRATE
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -64,149 +68,128 @@ public class ListAcitvity extends Activity implements DefaultHardwareBackBtnHand
         setContentView(R.layout.layout);
         Log.d("YJSSDF","isDebug---"+isDebug(this));
         listView = findViewById(R.id.recycleView_id);
-        et = findViewById(R.id.et);
-        local = findViewById(R.id.localhost);
-        btn_fenbao = findViewById(R.id.btn_fenbao);
-        titleList.add("打开插件");
-        scan_code = findViewById(R.id.scan_code);
+
+        titleList.add("调试app");
         listAdapter = new ListAdapter(titleList,this);
         listView.setAdapter(listAdapter);
+        verifyStoragePermissions(ListAcitvity.this);
 
-//        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_DEBUG_SERVER_HOST_KEY, Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.putString("debug_http_host",local.getText().toString());
-//        editor.commit();
 
-        scan_code.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkPermissions();
-            }
-        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent in = new Intent();
-                in.setClass(ListAcitvity.this, RnActivity.class);
-                RnActivity.bundleName = et.getText().toString();
-                if(et.getText().toString().length()==0||et.getText().toString().equals("")){
-                    Toast.makeText(ListAcitvity.this,"请输入插件名称",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(local.getText().toString().length()==0||local.getText().toString().equals("")){
-                    Toast.makeText(ListAcitvity.this,"请输入IP:端口调试",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                new PackagerConnectionSettings(getApplicationContext()).setDebugServerHost(local.getText().toString());
-                startActivity(in);
+                bottomDialog = new BottomDialog(ListAcitvity.this);
+                bottomDialog.setOnListener(new BottomDialog.OnHintDialogListener() {
+                    @Override
+                    public void onClickServer() {
+                        gotoServerActivity();
+                    }
+
+                    @Override
+                    public void onClickBundle() {
+                        isBundle = true;
+                        if(isLoaded){
+                            openFenBao("asset");
+                        }else {
+                            loadCommonAssets();
+                        }
+                    }
+
+                    @Override
+                    public void onClickFile() {
+                        isBundle = false;
+                        if(isLoaded){
+                            openFenBao("file");
+                        }else {
+                            loadCommonAssets();
+                        }
+                    }
+
+                    @Override
+                    public void onClickCancel() {
+                        bottomDialog.dismiss();
+                    }
+                });
+                bottomDialog.show();
             }
         });
 
-
-        btn_fenbao.setOnClickListener(v -> openFenBao());
-
-
-
-
-
-
-
     }
 
-    //点击按钮，访问如下方法
-    private void checkPermissions(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            int i = ContextCompat.checkSelfPermission(getContext(), permissions[0]);
-            int l = ContextCompat.checkSelfPermission(getContext(), permissions[1]);
-            // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
-            if (i != PackageManager.PERMISSION_GRANTED ||
-                    l != PackageManager.PERMISSION_GRANTED ) {
-                // 如果没有授予该权限，就去提示用户请求
-                startRequestPermission();
-            }else{
-                config();
-                openScan();
-            }
+    private void loadCommonAssets(){
+        ReactInstanceManager reactInstanceManager = ((ReactApplication)getApplication()).getReactNativeHost().getReactInstanceManager();
+
+        //监听加载结束的回调
+        reactInstanceManager.addReactInstanceEventListener(ListAcitvity.this);
+
+        if (!reactInstanceManager.hasStartedCreatingInitialContext()){
+            reactInstanceManager.createReactContextInBackground();
         }
-    }
-    private void startRequestPermission() {
-        ActivityCompat.requestPermissions(ListAcitvity.this, permissions, 321);
+        isLoaded = true;
     }
 
-    /**
-     * 提高屏幕亮度
-     */
-    private void config() {
-        WindowManager.LayoutParams lp = getWindow().getAttributes();
-        lp.screenBrightness = 1.0f;
-        getWindow().setAttributes(lp);
-    }
+ //   private void openFenBao ( ) {
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            Bundle bundle = data.getExtras();
-            String result = bundle.getString("result");
-            Log.d("yj","result-----result::"+result);
-            try {
-                JSONObject jsonObject = new JSONObject(result);
-                String pluginName = jsonObject.getString("name");
-                String ip = jsonObject.getString("ip");
-                Log.d("yj","result-----plugin::"+pluginName);
-                Log.d("yj","result-----ip::"+ip);
-                if(!TextUtils.isEmpty(pluginName)){
-                    et.setText(pluginName);
-                }
-                if(!TextUtils.isEmpty(ip)){
-                    local.setText(ip+":8081");
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 321) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    //如果没有获取权限，那么可以提示用户去设置界面--->应用权限开启权限
-                    Toast toast = Toast.makeText(this, "设置界面获取权限", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                } else {
-                    //获取权限成功,跳转
-                    config();
-                    openScan();
-                }
-            }
-        }
-    }
-
-    private void openScan(){
-        startActivityForResult(new Intent(ListAcitvity.this,
-                CaptureActivity.class), 0);
-    }
-
-    private void openFenBao ( ) {
+    private void openFenBao (String scriptType) {
+        Intent in = new Intent();
+        in.setClass(ListAcitvity.this, BussinessActivity.class);
+        Constance.SCRIPTTYPE = scriptType;
         startActivity(new Intent(ListAcitvity.this, BussinessActivity.class));
     }
 
+    public void gotoServerActivity(){
+        Intent in = new Intent();
+        in.setClass(ListAcitvity.this, ServerActivity.class);
+        startActivity(in);
+    }
 
     @Override
     public void invokeDefaultOnBackPressed() {
         // super.onBackPressed();
     }
 
+    //然后通过一个函数来申请
+
+    public  void verifyStoragePermissions(Activity activity) {
+        try {
+            //检测是否有写的权限
+            int permission = ActivityCompat.checkSelfPermission(activity,
+                    "android.permission.READ_EXTERNAL_STORAGE");
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                // 没有写的权限，去申请写的权限，会弹出对话框
+                ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE);
+            }else {
+                //gotoNewActivity();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//    @RequiresApi(api = Build.VERSION_CODES.O)
+//    @Override
+//    public void onRequestPermissionsResult (int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (requestCode == REQUEST_EXTERNAL_STORAGE){
+//            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+//               // gotoNewActivity();
+//            }
+//        }
+//    }
+
 
     public boolean isDebug(Context context){
         boolean isDebug = context.getApplicationInfo()!=null&&
                 (context.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE)!=0;
         return isDebug;
+    }
+
+    @Override
+    public void onReactContextInitialized(ReactContext reactContext) {
+        if(isBundle)
+            openFenBao("asset");
+        else
+            openFenBao("file");
     }
 }
