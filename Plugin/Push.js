@@ -13,31 +13,6 @@
  } from 'react-native';
  
  import CodePush from "react-native-code-push"; //引入code-push
- import { setJSExceptionHandler, setNativeExceptionHandler } from 'react-native-exception-handler';
-
- const errorHandler = (e, isFatal) => {
-  if (isFatal) {
-    Alert.alert(
-        'Unexpected error occurred',
-        `
-        Error: ${(isFatal) ? 'Fatal:' : ''} ${e.name} ${e.message}
-
-        We have reported this to our team ! Please close the app and start again!
-        `,
-      [{
-        text: 'Close'
-      }]
-    );
-  } else {
-    console.log(e); // So that we can see it in the ADB logs in case of Android if needed
-  }
-};
-
-setJSExceptionHandler(errorHandler, true);
-
-setNativeExceptionHandler((errorString) => {
-    console.log('setNativeExceptionHandler');
-});
  
  let codePushOptions = {
    //设置检查更新的频率
