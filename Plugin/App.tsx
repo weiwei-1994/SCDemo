@@ -52,7 +52,7 @@ const App = (props: any) => {
     <View style={styles.contanin}>
       <Button
         title="进入设置页"
-        onPress={() => props.navigation.navigate("Setting")} />
+        onPress={() => props.navigation.navigate("Setting1")} />
       {androidCompent()}
     </View>
   );

@@ -43,6 +43,7 @@
         <activity android:name=".RnActivity" />
         <activity android:name=".CaptureActivity"/>
         <activity android:name=".ServerActivity"/>
+        <activity android:name=".ReplaceActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

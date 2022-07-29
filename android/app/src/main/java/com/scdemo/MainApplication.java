@@ -82,12 +82,12 @@ public class MainApplication extends Application implements ReactApplication {
     ReactNativeExceptionHandlerModule.setNativeExceptionHandler(new NativeExceptionHandlerIfc() {
       @Override
       public void handleNativeException(Thread thread, Throwable throwable, Thread.UncaughtExceptionHandler originalHandler) {
-        // Put your error handling code here
-        Log.d("yj","exception----e--thread id--"+thread.getId()+":::"+thread.getName());
-        Log.d("yj","exception----e--throwable--"+throwable.getMessage());
-        originalHandler.uncaughtException(thread,throwable);
+        Log.d("yj","handleNativeException-------thread---"+thread.getName());
+        Log.d("yj","handleNativeException-------throwable---"+throwable.getMessage());
+        //originalHandler.uncaughtException(thread,throwable);
       }
-    });//This will override the default behaviour of displaying the recover activity.
+    });
+    ReactNativeExceptionHandlerModule.replaceErrorScreenActivityClass(ReplaceActivity.class); //This will replace the native error handler popup with your own custom activity
   }
 
   /**
