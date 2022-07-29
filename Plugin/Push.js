@@ -35,7 +35,7 @@
  
    //如果有更新的提示
    syncImmediate() {
-     CodePushs.sync( {
+     CodePush.sync( {
            //安装模式
            //ON_NEXT_RESUME 下次恢复到前台时
            //ON_NEXT_RESTART 下一次重启时
