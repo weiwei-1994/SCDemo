@@ -89,7 +89,7 @@
     
     
     PluginModel * model3 = [[PluginModel alloc] init];
-    model3.moduleName = @"scdemo";
+    model3.moduleName = @"SCDemo";
     model3.filePath = [[NSBundle mainBundle] URLForResource:@"scdemo-business" withExtension:@"jsbundle"].path;
     
     self.dataSource = @[model0,model1,model2,model3];
@@ -217,6 +217,11 @@
   }
   reactNavtiveVC.view = rootView;
   [self.navigationController pushViewController:reactNavtiveVC animated:YES];
+//  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    NSDictionary * dic = @{@"Q":@"q"};
+//    NSArray * arr = dic[@"Q"];
+//    NSLog(@"%@",arr[5]);
+//  });
 }
 
 //拼接包
