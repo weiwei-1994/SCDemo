@@ -15,8 +15,9 @@ import {
   Button,
   NativeModules
 } from 'react-native';
-import {NavtiveView} from 'react-native-ww-plugin-sdk'
-import './Exception/ExceptionHandler'
+import { NavtiveView } from 'react-native-ww-plugin-sdk'
+import { registExceptionHandler } from './Exception/ExceptionHandler'
+import {name} from '../app.json'
 
 const App = (props: any) => {
   const [count, setCount] = useState(1);
@@ -48,6 +49,10 @@ const App = (props: any) => {
     return null;
   }
 
+  useEffect(() => {
+    registExceptionHandler(name);
+  })
+
   return (
     <View style={styles.contanin}>
       <Button
@@ -64,7 +69,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  androidArea:{
+  androidArea: {
     marginTop: 30
   },
   nativeView: {

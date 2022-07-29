@@ -1,6 +1,7 @@
 import React from 'react'
 import {
     Button,
+    DrawerLayoutAndroidComponent,
     NativeModules
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
@@ -13,7 +14,7 @@ import SeetingPage from '../Pages/SettingPage'
 const Stack = createNativeStackNavigator();
 const NativeModule = NativeModules.NativeModule;
 
-const Navigate = (props:any) => {
+const Navigate = (props: any) => {
 
     return (
         <NavigationContainer>
@@ -27,7 +28,13 @@ const Navigate = (props:any) => {
                             return (
                                 <Button
                                     title="返回App"
-                                    onPress={() => NativeModule.nativeStackPop()} />)
+                                    onPress={() => {
+                                        NativeModule.nativeStackPop()
+                                        // let aa;
+                                        // aa.add();
+                                    }
+                                    } />
+                            )
                         },
                         // headerRight: (props) => {
                         //     return (
