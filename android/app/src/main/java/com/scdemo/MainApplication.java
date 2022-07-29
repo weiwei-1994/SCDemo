@@ -17,6 +17,7 @@ import com.swmansion.reanimated.ReanimatedPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -55,8 +56,12 @@ public class MainApplication extends Application implements ReactApplication {
     @Nullable
     @Override
     protected String getJSBundleFile() {
-      Log.d("yj","files----"+getApplicationContext().getFilesDir().getAbsolutePath() + "/bundle" +"/basices.bundle");
-      return getApplicationContext().getFilesDir().getAbsolutePath()+"/bundle/basices.jsbundle";
+      File file = new File(getApplicationContext().getFilesDir().getAbsolutePath()+"/bundle/basices.jsbundle");
+      if(file.exists()) {
+        return getApplicationContext().getFilesDir().getAbsolutePath() + "/bundle/basices.jsbundle";
+      }else{
+        return null;
+      }
       //return "";
     }
 
