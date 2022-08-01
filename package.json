@@ -21,6 +21,7 @@
     "react-native": "0.69.0",
     "react-native-calendars": "1.1284.0",
     "react-native-code-push": "7.0.5",
+    "react-native-exception-handler": "2.10.10",
     "react-native-gesture-handler": "2.5.0",
     "react-native-pager-view": "5.4.24",
     "react-native-reanimated": "2.9.1",
