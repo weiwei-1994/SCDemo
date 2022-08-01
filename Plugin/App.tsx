@@ -15,8 +15,7 @@ import {
   Button,
   NativeModules
 } from 'react-native';
-import { NavtiveView } from 'react-native-ww-plugin-sdk'
-import { registExceptionHandler } from './Exception/ExceptionHandler'
+import { NavtiveView,registExceptionHandler} from 'react-native-ww-plugin-sdk'
 import {name} from '../app.json'
 
 const App = (props: any) => {
