@@ -22,8 +22,8 @@ public class BussinessActivity extends AsyncReactActivity {
         switch (Constance.SCRIPTTYPE) {
             case "asset":
                 bundle.scriptType = ScriptType.ASSET;
-                bundle.scriptPath = "business.jsbundle";
-                bundle.scriptUrl = "business.jsbundle";
+                bundle.scriptPath = "scdemo-business.jsbundle";
+                bundle.scriptUrl = "scdemo-business.jsbundle";
                 break;
             case "file":
                 bundle.scriptType = ScriptType.FILE;
