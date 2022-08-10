@@ -13,4 +13,5 @@ import "react-native-screens"
 import "react-native-tab-view"
 import "react-native-ww-plugin-sdk"
 import "react-native-calendars"
-
+import "react-native-code-push"
+import "react-native-reanimated"
