@@ -50,15 +50,15 @@ public class MainApplication extends Application implements ReactApplication {
     @Nullable
     @Override
     protected String getBundleAssetName ( ) {
-      return "basic.jsbundle";
+      return "common.jsbundle";
     }
 
     @Nullable
     @Override
     protected String getJSBundleFile() {
-      File file = new File(getApplicationContext().getFilesDir().getAbsolutePath()+"/bundle/basices.jsbundle");
+      File file = new File(getApplicationContext().getFilesDir().getAbsolutePath()+"/bundle/common.jsbundle");
       if(file.exists()) {
-        return getApplicationContext().getFilesDir().getAbsolutePath() + "/bundle/basices.jsbundle";
+        return getApplicationContext().getFilesDir().getAbsolutePath() + "/bundle/common.jsbundle";
       }else{
         return null;
       }

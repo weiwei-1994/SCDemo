@@ -35,11 +35,13 @@ import java.io.File;
 
 import javax.annotation.Nullable;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 
 /**
  * 异步加载业务bundle的activity
  */
-public abstract class AsyncReactActivity extends androidx.fragment.app.FragmentActivity
+public abstract class AsyncReactActivity extends AppCompatActivity
         implements DefaultHardwareBackBtnHandler, PermissionAwareActivity {
 
     public enum ScriptType {ASSET,FILE,NETWORK}
