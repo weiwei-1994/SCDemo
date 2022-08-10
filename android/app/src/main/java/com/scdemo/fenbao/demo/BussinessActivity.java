@@ -1,14 +1,35 @@
 package com.scdemo.fenbao.demo;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import com.masteratul.exceptionhandler.ReactNativeExceptionHandlerModule;
 import com.scdemo.Constance;
+import com.scdemo.RnActivity;
 import com.scdemo.RnBundle;
 import com.scdemo.fenbao.AsyncReactActivity;
 
 public class BussinessActivity extends AsyncReactActivity {
+    private String simpleName = "finishApp";
+    private FinishActivityReceiver mReceiver;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mReceiver = new FinishActivityReceiver();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerFinishReceiver();
+    }
 
     @Nullable
     @Override
@@ -33,5 +54,30 @@ public class BussinessActivity extends AsyncReactActivity {
         }
 
         return bundle;
+    }
+
+
+    private void registerFinishReceiver() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(simpleName);
+        registerReceiver(mReceiver, intentFilter);
+    }
+
+    private class FinishActivityReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //需要关闭页面的action
+            if (simpleName.equals(intent.getAction())) {
+                BussinessActivity.this.finish();
+            }
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(mReceiver!=null) {
+            unregisterReceiver(mReceiver);
+        }
     }
 }
